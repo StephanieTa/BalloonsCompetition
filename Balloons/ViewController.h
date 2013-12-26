@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "AirPumpView.h"
+
 @interface ViewController : UIViewController
+
+@property (nonatomic, strong) AirPumpView *airPumpView;
 
 @end
