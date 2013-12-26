@@ -20,7 +20,6 @@
 @implementation BalloonView
 
 - (void)initBallon {
-//    self.backgroundColor = [UIColor blueColor];
     self.ballon = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20.0f, 20.0f)];
     self.ballon.backgroundColor = [UIColor redColor];
     self.ballon.layer.cornerRadius = 10.0f;

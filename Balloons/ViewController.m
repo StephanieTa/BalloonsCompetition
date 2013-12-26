@@ -19,16 +19,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIView *basicView = [[UIView alloc] init];
+    basicView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds)/2.0f, CGRectGetHeight(self.view.bounds));
+    basicView.backgroundColor = [UIColor yellowColor];
+    [self.view addSubview:basicView];
+    
     // Set up air pump
     
-    self.airPumpView = [[AirPumpView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds), 50.0f, 100.0f)];
+    self.airPumpView = [[AirPumpView alloc] initWithFrame:CGRectMake(20.0f, 200.0f, 150.0f, 200.0f)];
     self.airPumpView.delegate = self;
-    [self.view addSubview:self.airPumpView];
+    [basicView addSubview:self.airPumpView];
     
     // Set up balloon
     
-    self.balloonView = [[BalloonView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds) - 100.0f, 100.0f, 100.0f)];
-    [self.view addSubview:self.balloonView];
+    self.balloonView = [[BalloonView alloc] initWithFrame:CGRectMake(40.0f, 100.0f, 50.0f, 50.0f)];
+    [basicView addSubview:self.balloonView];
 }
 
 #pragma mark - AirPumpView delegate methods
