@@ -20,11 +20,10 @@
 @implementation BalloonView
 
 - (void)initBallon {
-    self.ballon = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20.0f, 20.0f)];
-    self.ballon.backgroundColor = [UIColor redColor];
-    self.ballon.layer.cornerRadius = 10.0f;
-    self.ballon.layer.borderColor = [UIColor blackColor].CGColor;
-    self.ballon.layer.borderWidth = 1.0f;
+    self.ballon = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30.0f, 30.0f)];
+    UIImageView *ballonImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Balloon.png"]];
+    [self.ballon addSubview:ballonImgView];
+    ballonImgView.frame = self.ballon.frame;
     [self addSubview:self.ballon];
 }
 

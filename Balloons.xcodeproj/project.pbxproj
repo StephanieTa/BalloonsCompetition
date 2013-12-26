@@ -22,6 +22,7 @@
 		219BDF85186C71810059EC55 /* BalloonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 219BDF84186C71810059EC55 /* BalloonView.m */; };
 		219BDF8D186C7F6F0059EC55 /* luftpumpe.png in Resources */ = {isa = PBXBuildFile; fileRef = 219BDF8B186C7F6F0059EC55 /* luftpumpe.png */; };
 		219BDF8E186C7F6F0059EC55 /* luftpumpeTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 219BDF8C186C7F6F0059EC55 /* luftpumpeTop.png */; };
+		219BDF90186C922C0059EC55 /* Balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 219BDF8F186C922C0059EC55 /* Balloon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		219BDF84186C71810059EC55 /* BalloonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BalloonView.m; sourceTree = "<group>"; };
 		219BDF8B186C7F6F0059EC55 /* luftpumpe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luftpumpe.png; sourceTree = "<group>"; };
 		219BDF8C186C7F6F0059EC55 /* luftpumpeTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luftpumpeTop.png; sourceTree = "<group>"; };
+		219BDF8F186C922C0059EC55 /* Balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		219BDF8A186C7F6F0059EC55 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				219BDF8F186C922C0059EC55 /* Balloon.png */,
 				219BDF8B186C7F6F0059EC55 /* luftpumpe.png */,
 				219BDF8C186C7F6F0059EC55 /* luftpumpeTop.png */,
 			);
@@ -189,6 +192,7 @@
 				219BDF74186C5C2F0059EC55 /* MainStoryboard.storyboard in Resources */,
 				219BDF8D186C7F6F0059EC55 /* luftpumpe.png in Resources */,
 				219BDF8E186C7F6F0059EC55 /* luftpumpeTop.png in Resources */,
+				219BDF90186C922C0059EC55 /* Balloon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

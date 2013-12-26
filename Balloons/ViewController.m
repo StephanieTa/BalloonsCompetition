@@ -12,6 +12,8 @@
 
 @interface ViewController ()
 
+@property (nonatomic) CGFloat size;
+
 @end
 
 @implementation ViewController
@@ -33,6 +35,7 @@
     // Set up balloon
     
     self.balloonView = [[BalloonView alloc] initWithFrame:CGRectMake(40.0f, 100.0f, 50.0f, 50.0f)];
+    self.size = 1.5f;
     [basicView addSubview:self.balloonView];
 }
 
@@ -40,9 +43,9 @@
 
 - (void)didTapOnAirPump:(UIView *)airPumpView {
     [UIView animateWithDuration:2.0f animations:^{
-        self.balloonView.ballon.frame = CGRectMake(0, 0, 40.0f, 40.0f);
-        self.balloonView.ballon.layer.cornerRadius = self.balloonView.ballon.frame.size.width/2.0f;
+        self.balloonView.ballon.transform = CGAffineTransformMakeScale(self.size, self.size);
     }];
+    self.size = self.size * 1.5f;
 }
 
 @end
