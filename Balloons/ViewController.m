@@ -18,8 +18,15 @@
     [super viewDidLoad];
     
     self.airPumpView = [[AirPumpView alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds), 50.0f, 100.0f)];
+    self.airPumpView.delegate = self;
     
     [self.view addSubview:self.airPumpView];
+}
+
+#pragma mark - AirPumpView delegate methods
+
+- (void)didTapOnAirPump:(UIView *)airPumpView {
+    // TODO
 }
 
 @end

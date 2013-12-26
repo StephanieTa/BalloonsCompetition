@@ -37,6 +37,8 @@
     return self;
 }
 
+#pragma mark - Private methods
+
 - (void)onAirPumpTouchUpInside:(id)sender {
     [UIView animateWithDuration:0.5f
                      animations:^{
@@ -50,6 +52,7 @@
                           ];
                      }
      ];
+    [self.delegate didTapOnAirPump:self];
 }
 
 @end

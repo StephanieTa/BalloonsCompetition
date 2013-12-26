@@ -10,7 +10,7 @@
 
 #import "AirPumpView.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <AirPumpViewDelegate>
 
 @property (nonatomic, strong) AirPumpView *airPumpView;
 

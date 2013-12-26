@@ -8,11 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol AirPumpViewDelegate;
+
 @interface AirPumpView : UIView
 
 @property (nonatomic, strong) UIButton *airPump;
 @property (nonatomic, strong) UIView *stick;
+@property (nonatomic, weak) id <AirPumpViewDelegate> delegate;
 
 - (void)initAirPump;
 
 @end
+
+@protocol AirPumpViewDelegate <NSObject>
+
+- (void)didTapOnAirPump:(UIView *)airPumpView;
+
+@end
+
