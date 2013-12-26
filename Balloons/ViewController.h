@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 #import "AirPumpView.h"
+#import "BalloonView.h"
 
 @interface ViewController : UIViewController <AirPumpViewDelegate>
 
 @property (nonatomic, strong) AirPumpView *airPumpView;
+@property (nonatomic, strong) BalloonView *balloonView;
 
 @end
