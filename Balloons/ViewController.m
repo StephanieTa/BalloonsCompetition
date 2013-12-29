@@ -21,22 +21,47 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIView *basicView = [[UIView alloc] init];
-    basicView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds)/2.0f, CGRectGetHeight(self.view.bounds));
-    basicView.backgroundColor = [UIColor blueColor];
-    [self.view addSubview:basicView];
+    UIView *viewA = [[UIView alloc] init];
+    viewA.translatesAutoresizingMaskIntoConstraints = NO;
+    viewA.backgroundColor = [UIColor blueColor];
+    [self.view addSubview:viewA];
     
     // Set up air pump
     
-    self.airPumpView = [[AirPumpView alloc] initWithFrame:CGRectMake(20.0f, 200.0f, 150.0f, 200.0f)];
+    self.airPumpView = [[AirPumpView alloc] init];
+    self.airPumpView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.airPumpView.backgroundColor = [UIColor whiteColor];
     self.airPumpView.delegate = self;
-    [basicView addSubview:self.airPumpView];
+    [viewA addSubview:self.airPumpView];
     
     // Set up balloon
     
-    self.balloonView = [[BalloonView alloc] initWithFrame:CGRectMake(40.0f, 100.0f, 50.0f, 50.0f)];
+    self.balloonView = [[BalloonView alloc] init];
+    self.balloonView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.balloonView.backgroundColor = [UIColor whiteColor];
     self.size = 1.5f;
-    [basicView addSubview:self.balloonView];
+    [viewA addSubview:self.balloonView];
+    
+    // Constraints
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[viewA(160.0)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(viewA)]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[viewA]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(viewA)]];
+    
+    [viewA addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:viewA attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0]];
+    
+    [viewA addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:viewA attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:-200.0f]];
+    
+    [viewA addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:80.0f]];
+    
+    [viewA addConstraint:[NSLayoutConstraint constraintWithItem:self.airPumpView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:viewA attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0]];
+    
+    [viewA addConstraint:[NSLayoutConstraint constraintWithItem:self.airPumpView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:80.0f]];
+    
+    [viewA addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airPumpView(200.0)]-50.0-|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:NSDictionaryOfVariableBindings(_airPumpView)]];
 }
 
 #pragma mark - AirPumpView delegate methods
