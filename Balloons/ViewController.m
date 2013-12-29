@@ -23,7 +23,7 @@
     
     UIView *basicView = [[UIView alloc] init];
     basicView.frame = CGRectMake(0, 0, CGRectGetWidth(self.view.bounds)/2.0f, CGRectGetHeight(self.view.bounds));
-    basicView.backgroundColor = [UIColor yellowColor];
+    basicView.backgroundColor = [UIColor blueColor];
     [self.view addSubview:basicView];
     
     // Set up air pump
@@ -43,7 +43,7 @@
 
 - (void)didTapOnAirPump:(UIView *)airPumpView {
     [UIView animateWithDuration:2.0f animations:^{
-        self.balloonView.ballon.transform = CGAffineTransformMakeScale(self.size, self.size);
+        self.balloonView.transform = CGAffineTransformMakeScale(self.size, self.size);
     }];
     self.size = self.size * 1.5f;
 }

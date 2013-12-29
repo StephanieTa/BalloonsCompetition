@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210DC0951870731D0092E6B8 /* UIBezierPath+PipeGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 210DC0941870731D0092E6B8 /* UIBezierPath+PipeGlyph.m */; };
+		210DC09F187081360092E6B8 /* UIColor+ColorTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 210DC09E187081360092E6B8 /* UIColor+ColorTools.m */; };
+		210DC0A2187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 210DC0A1187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m */; };
 		219BDF5B186C5C2F0059EC55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5A186C5C2F0059EC55 /* UIKit.framework */; };
 		219BDF5D186C5C2F0059EC55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5C186C5C2F0059EC55 /* Foundation.framework */; };
 		219BDF5F186C5C2F0059EC55 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5E186C5C2F0059EC55 /* CoreGraphics.framework */; };
@@ -26,6 +29,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		210DC0931870731D0092E6B8 /* UIBezierPath+PipeGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+PipeGlyph.h"; sourceTree = "<group>"; };
+		210DC0941870731D0092E6B8 /* UIBezierPath+PipeGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+PipeGlyph.m"; sourceTree = "<group>"; };
+		210DC09D187081360092E6B8 /* UIColor+ColorTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorTools.h"; sourceTree = "<group>"; };
+		210DC09E187081360092E6B8 /* UIColor+ColorTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorTools.m"; sourceTree = "<group>"; };
+		210DC0A0187082A90092E6B8 /* UIBezierPath+BalloonGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+BalloonGlyph.h"; sourceTree = "<group>"; };
+		210DC0A1187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+BalloonGlyph.m"; sourceTree = "<group>"; };
 		219BDF57186C5C2F0059EC55 /* Balloons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Balloons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		219BDF5A186C5C2F0059EC55 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		219BDF5C186C5C2F0059EC55 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,6 +74,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		210DC0921870731D0092E6B8 /* Glyphs */ = {
+			isa = PBXGroup;
+			children = (
+				210DC0931870731D0092E6B8 /* UIBezierPath+PipeGlyph.h */,
+				210DC0941870731D0092E6B8 /* UIBezierPath+PipeGlyph.m */,
+				210DC0A0187082A90092E6B8 /* UIBezierPath+BalloonGlyph.h */,
+				210DC0A1187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m */,
+			);
+			path = Glyphs;
+			sourceTree = "<group>";
+		};
+		210DC096187080520092E6B8 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				210DC09D187081360092E6B8 /* UIColor+ColorTools.h */,
+				210DC09E187081360092E6B8 /* UIColor+ColorTools.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
 		219BDF4E186C5C2F0059EC55 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +133,8 @@
 				219BDF81186C699E0059EC55 /* AirPumpView.m */,
 				219BDF83186C71810059EC55 /* BalloonView.h */,
 				219BDF84186C71810059EC55 /* BalloonView.m */,
+				210DC0921870731D0092E6B8 /* Glyphs */,
+				210DC096187080520092E6B8 /* Categories */,
 				219BDF8A186C7F6F0059EC55 /* Images */,
 				219BDF61186C5C2F0059EC55 /* Supporting Files */,
 			);
@@ -208,6 +239,9 @@
 				219BDF77186C5C2F0059EC55 /* ViewController.m in Sources */,
 				219BDF82186C699E0059EC55 /* AirPumpView.m in Sources */,
 				219BDF85186C71810059EC55 /* BalloonView.m in Sources */,
+				210DC0951870731D0092E6B8 /* UIBezierPath+PipeGlyph.m in Sources */,
+				210DC09F187081360092E6B8 /* UIColor+ColorTools.m in Sources */,
+				210DC0A2187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +364,7 @@
 				219BDF7C186C5C2F0059EC55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

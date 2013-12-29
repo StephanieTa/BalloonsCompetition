@@ -10,6 +10,10 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "UIBezierPath+BalloonGlyph.h"
+#import "UIColor+ColorTools.h"
+
+
 @interface BalloonView ()
 
 - (void)initBallon;
@@ -20,11 +24,12 @@
 @implementation BalloonView
 
 - (void)initBallon {
-    self.ballon = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30.0f, 30.0f)];
-    UIImageView *ballonImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Balloon.png"]];
-    [self.ballon addSubview:ballonImgView];
-    ballonImgView.frame = self.ballon.frame;
-    [self addSubview:self.ballon];
+//    self.ballon = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30.0f, 30.0f)];
+//    UIImageView *ballonImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Balloon.png"]];
+//    [self.ballon addSubview:ballonImgView];
+//    ballonImgView.frame = self.ballon.frame;
+//    
+//    [self addSubview:self.ballon];
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -33,6 +38,12 @@
         [self initBallon];
     }
     return self;
+}
+
+- (void)drawRect:(CGRect)rect {
+    UIBezierPath *balloon = [UIBezierPath balloonGlyph];
+    [[UIColor colorWithFloatRed:255.0f green:181.0f blue:59.0f alpha:1.0f] setFill];
+    [balloon fill];
 }
 
 @end
