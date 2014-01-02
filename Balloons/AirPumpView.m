@@ -19,27 +19,33 @@
 
 - (void)initAirPump {
     
-    UIView *basicPumpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160.0f, 200.0f)];
-    [self addSubview:basicPumpView];
-    
     // Set up air pump top
     
-    self.stick = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80.0f, 40.0f)];
+    self.stick = [[UIView alloc] init];
+    self.stick.translatesAutoresizingMaskIntoConstraints = NO;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onAirPumpTouchUpInside:)];
     [self.stick addGestureRecognizer:tapGesture];
     UIImageView *stickView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"luftpumpeTop.png"]];
     stickView.frame = self.stick.frame;
     [self.stick addSubview:stickView];
-    [basicPumpView addSubview:self.stick];
+    [self addSubview:self.stick];
     
     // Set up air pump bottom
     
-    self.airPump = [[UIButton alloc] initWithFrame:CGRectMake(0, 50.0f, 80.0f, 150.0f)];
+    self.airPump = [[UIButton alloc] init];
+    self.airPump.translatesAutoresizingMaskIntoConstraints = NO;
     UIImage *airPumpImg = [UIImage imageNamed:@"luftpumpe.png"];
     [self.airPump setBackgroundImage:airPumpImg forState:UIControlStateNormal];
     self.airPump.userInteractionEnabled = YES;
     [self.airPump addTarget:self action:@selector(onAirPumpTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
-    [basicPumpView addSubview:self.airPump];
+    [self addSubview:self.airPump];
+    
+    NSDictionary *views = NSDictionaryOfVariableBindings(_stick, _airPump);
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10.0-[_stick(10.0)]-10.0-[_airPump]-10.0-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10.0-[_airPump]-10.0-|" options:0 metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10.0-[_stick]-10.0-|" options:0 metrics:nil views:views]];
+    
 }
 
 - (id)initWithFrame:(CGRect)frame {

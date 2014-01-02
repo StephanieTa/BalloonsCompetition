@@ -26,6 +26,9 @@
 		219BDF8D186C7F6F0059EC55 /* luftpumpe.png in Resources */ = {isa = PBXBuildFile; fileRef = 219BDF8B186C7F6F0059EC55 /* luftpumpe.png */; };
 		219BDF8E186C7F6F0059EC55 /* luftpumpeTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 219BDF8C186C7F6F0059EC55 /* luftpumpeTop.png */; };
 		219BDF90186C922C0059EC55 /* Balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 219BDF8F186C922C0059EC55 /* Balloon.png */; };
+		21AF06511875D06100B1568A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AF06501875D06100B1568A /* QuartzCore.framework */; };
+		21AF06531875D06D00B1568A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AF06521875D06D00B1568A /* libz.dylib */; };
+		21AF06551875D0F000B1568A /* SparkInspector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AF06541875D0F000B1568A /* SparkInspector.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,9 @@
 		219BDF8B186C7F6F0059EC55 /* luftpumpe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luftpumpe.png; sourceTree = "<group>"; };
 		219BDF8C186C7F6F0059EC55 /* luftpumpeTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = luftpumpeTop.png; sourceTree = "<group>"; };
 		219BDF8F186C922C0059EC55 /* Balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon.png; sourceTree = "<group>"; };
+		21AF06501875D06100B1568A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		21AF06521875D06D00B1568A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		21AF06541875D0F000B1568A /* SparkInspector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SparkInspector.framework; path = "../../../../../Applications/Spark Inspector.app/Contents/Resources/Frameworks/SparkInspector.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21AF06531875D06D00B1568A /* libz.dylib in Frameworks */,
+				21AF06511875D06100B1568A /* QuartzCore.framework in Frameworks */,
+				21AF06551875D0F000B1568A /* SparkInspector.framework in Frameworks */,
 				219BDF5B186C5C2F0059EC55 /* UIKit.framework in Frameworks */,
 				219BDF5D186C5C2F0059EC55 /* Foundation.framework in Frameworks */,
 				219BDF5F186C5C2F0059EC55 /* CoreGraphics.framework in Frameworks */,
@@ -114,6 +123,9 @@
 		219BDF59186C5C2F0059EC55 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				21AF06541875D0F000B1568A /* SparkInspector.framework */,
+				21AF06521875D06D00B1568A /* libz.dylib */,
+				21AF06501875D06100B1568A /* QuartzCore.framework */,
 				219BDF5A186C5C2F0059EC55 /* UIKit.framework */,
 				219BDF5C186C5C2F0059EC55 /* Foundation.framework */,
 				219BDF5E186C5C2F0059EC55 /* CoreGraphics.framework */,
@@ -294,6 +306,11 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-framework",
+					SparkInspector,
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -326,6 +343,10 @@
 		219BDF7B186C5C2F0059EC55 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Spark\\ Inspector.app/Contents/Resources/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balloons/Balloons-Prefix.pch";
 				INFOPLIST_FILE = "Balloons/Balloons-Info.plist";
@@ -337,6 +358,10 @@
 		219BDF7C186C5C2F0059EC55 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SYSTEM_APPS_DIR)/Spark\\ Inspector.app/Contents/Resources/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Balloons/Balloons-Prefix.pch";
 				INFOPLIST_FILE = "Balloons/Balloons-Info.plist";

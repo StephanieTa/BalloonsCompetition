@@ -13,7 +13,9 @@
 
 @interface ViewController : UIViewController <AirPumpViewDelegate>
 
-@property (nonatomic, strong) AirPumpView *airPumpView;
+@property (nonatomic, strong) AirPumpView *airPumpOne;
+@property (nonatomic, strong) AirPumpView *airPumpTwo;
+@property (nonatomic, strong) AirPumpView *airPumpThree;
 @property (nonatomic, strong) BalloonView *balloonView;
 
 @end
