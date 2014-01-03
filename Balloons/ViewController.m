@@ -91,10 +91,13 @@
 #pragma mark - airPumpOne delegate methods
 
 - (void)didTapOnAirPump:(UIView *)airPumpOne {
-    [UIView animateWithDuration:2.0f animations:^{
+    [UIView animateWithDuration:5.0f animations:^{
         self.balloonView.transform = CGAffineTransformMakeScale(self.size, self.size);
+    } completion:^(BOOL finished) {
+        [self.airTubeView animateIdeaAlongAirTube];
     }];
     self.size = self.size * 1.5f;
+    [self.airTubeView.circleView removeFromSuperview];
 }
 
 @end

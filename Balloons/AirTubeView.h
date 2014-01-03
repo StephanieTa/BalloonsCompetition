@@ -10,4 +10,7 @@
 
 @interface AirTubeView : UIView
 
+@property (nonatomic, strong) UIImageView *circleView;
+- (void)animateIdeaAlongAirTube;
+
 @end

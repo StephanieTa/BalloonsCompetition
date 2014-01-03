@@ -16,7 +16,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self drawAirTubeCurveLeft];
-        [self animateIdeaAlongAirTube];
     }
     return self;
 }
@@ -61,12 +60,12 @@
 	UIImage *circle = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
 	
-	UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
-	circleView.frame = CGRectMake(0, 0, 100.0f, 100.0f);
-	[self addSubview:circleView];
+	self.circleView = [[UIImageView alloc] initWithImage:circle];
+	self.circleView.frame = CGRectMake(0, 0, 100.0f, 100.0f);
+	[self addSubview:self.circleView];
     
 	//Add the animation to the circleView - once you add the animation to the layer, the animation starts
-	[circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
+	[self.circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
 }
 
 @end
