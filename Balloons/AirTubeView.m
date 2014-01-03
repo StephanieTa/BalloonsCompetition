@@ -42,7 +42,7 @@
 	pathAnimation.calculationMode = kCAAnimationPaced;
 	pathAnimation.fillMode = kCAFillModeForwards;
 	pathAnimation.removedOnCompletion = NO;
-	pathAnimation.duration = 3.0;
+	pathAnimation.duration = 5.0;
 	pathAnimation.repeatCount = 1;
 	
 	//Setup the path for the animation

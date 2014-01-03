@@ -53,8 +53,8 @@
     
     self.airTubeView = [[AirTubeView alloc] init];
     self.airTubeView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.airTubeView.backgroundColor = [UIColor redColor];
-//    self.airTubeView.opaque = NO;
+    self.airTubeView.backgroundColor = nil;
+    self.airTubeView.opaque = NO;
     [self.view addSubview:self.airTubeView];
     
     // Constraints
@@ -67,14 +67,22 @@
 //    
 //    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:80.0f]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-80.0-[_airTubeView(100.0)]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-90.0-[_airTubeView(100.0)]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:views]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-177.0-[_airTubeView(100.0)]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:views]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_airPumpOne][_airPumpTwo(==_airPumpOne)][_airPumpThree(==_airPumpOne)]|"
                                                                       options:NSLayoutFormatAlignAllBottom
                                                                       metrics:nil
                                                                         views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airTubeView(100.0)][_airPumpOne(100.0)]|"
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airPumpOne(100.0)]|"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];
