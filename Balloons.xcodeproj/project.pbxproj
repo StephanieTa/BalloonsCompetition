@@ -10,6 +10,7 @@
 		210DC0951870731D0092E6B8 /* UIBezierPath+PipeGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 210DC0941870731D0092E6B8 /* UIBezierPath+PipeGlyph.m */; };
 		210DC09F187081360092E6B8 /* UIColor+ColorTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 210DC09E187081360092E6B8 /* UIColor+ColorTools.m */; };
 		210DC0A2187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 210DC0A1187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m */; };
+		21310025187714A700519753 /* AirTubeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21310024187714A700519753 /* AirTubeView.m */; };
 		219BDF5B186C5C2F0059EC55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5A186C5C2F0059EC55 /* UIKit.framework */; };
 		219BDF5D186C5C2F0059EC55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5C186C5C2F0059EC55 /* Foundation.framework */; };
 		219BDF5F186C5C2F0059EC55 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5E186C5C2F0059EC55 /* CoreGraphics.framework */; };
@@ -38,6 +39,8 @@
 		210DC09E187081360092E6B8 /* UIColor+ColorTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorTools.m"; sourceTree = "<group>"; };
 		210DC0A0187082A90092E6B8 /* UIBezierPath+BalloonGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+BalloonGlyph.h"; sourceTree = "<group>"; };
 		210DC0A1187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+BalloonGlyph.m"; sourceTree = "<group>"; };
+		21310023187714A700519753 /* AirTubeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirTubeView.h; sourceTree = "<group>"; };
+		21310024187714A700519753 /* AirTubeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirTubeView.m; sourceTree = "<group>"; };
 		219BDF57186C5C2F0059EC55 /* Balloons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Balloons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		219BDF5A186C5C2F0059EC55 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		219BDF5C186C5C2F0059EC55 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -136,15 +139,17 @@
 		219BDF60186C5C2F0059EC55 /* Balloons */ = {
 			isa = PBXGroup;
 			children = (
+				219BDF72186C5C2F0059EC55 /* MainStoryboard.storyboard */,
 				219BDF69186C5C2F0059EC55 /* AppDelegate.h */,
 				219BDF6A186C5C2F0059EC55 /* AppDelegate.m */,
-				219BDF72186C5C2F0059EC55 /* MainStoryboard.storyboard */,
-				219BDF75186C5C2F0059EC55 /* ViewController.h */,
-				219BDF76186C5C2F0059EC55 /* ViewController.m */,
-				219BDF80186C699E0059EC55 /* AirPumpView.h */,
-				219BDF81186C699E0059EC55 /* AirPumpView.m */,
 				219BDF83186C71810059EC55 /* BalloonView.h */,
 				219BDF84186C71810059EC55 /* BalloonView.m */,
+				21310023187714A700519753 /* AirTubeView.h */,
+				21310024187714A700519753 /* AirTubeView.m */,
+				219BDF80186C699E0059EC55 /* AirPumpView.h */,
+				219BDF81186C699E0059EC55 /* AirPumpView.m */,
+				219BDF75186C5C2F0059EC55 /* ViewController.h */,
+				219BDF76186C5C2F0059EC55 /* ViewController.m */,
 				210DC0921870731D0092E6B8 /* Glyphs */,
 				210DC096187080520092E6B8 /* Categories */,
 				219BDF8A186C7F6F0059EC55 /* Images */,
@@ -254,6 +259,7 @@
 				210DC0951870731D0092E6B8 /* UIBezierPath+PipeGlyph.m in Sources */,
 				210DC09F187081360092E6B8 /* UIColor+ColorTools.m in Sources */,
 				210DC0A2187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m in Sources */,
+				21310025187714A700519753 /* AirTubeView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
