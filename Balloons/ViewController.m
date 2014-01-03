@@ -49,17 +49,29 @@
     self.size = 1.5f;
 //    [self.view addSubview:self.balloonView];
     
-    // Set up air tube
+    // Set up air tubes
     
-    self.airTubeView = [[AirTubeView alloc] init];
-    self.airTubeView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.airTubeView.backgroundColor = nil;
-    self.airTubeView.opaque = NO;
-    [self.view addSubview:self.airTubeView];
+    self.airTubeViewOne = [[AirTubeView alloc] init];
+    self.airTubeViewOne.translatesAutoresizingMaskIntoConstraints = NO;
+    self.airTubeViewOne.backgroundColor = nil;
+    self.airTubeViewOne.opaque = NO;
+    [self.view addSubview:self.airTubeViewOne];
+    
+    self.airTubeViewTwo = [[AirTubeView alloc] init];
+    self.airTubeViewTwo.translatesAutoresizingMaskIntoConstraints = NO;
+    self.airTubeViewTwo.backgroundColor = nil;
+    self.airTubeViewTwo.opaque = NO;
+    [self.view addSubview:self.airTubeViewTwo];
+    
+    self.airTubeViewThree = [[AirTubeView alloc] init];
+    self.airTubeViewThree.translatesAutoresizingMaskIntoConstraints = NO;
+    self.airTubeViewThree.backgroundColor = nil;
+    self.airTubeViewThree.opaque = NO;
+    [self.view addSubview:self.airTubeViewThree];
     
     // Constraints
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_airPumpOne, _airPumpTwo, _airPumpThree, _airTubeView);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_airPumpOne, _airPumpTwo, _airPumpThree, _airTubeViewOne, _airTubeViewTwo, _airTubeViewThree);
     
 //    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0]];
 //    
@@ -67,12 +79,32 @@
 //    
 //    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:80.0f]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-90.0-[_airTubeView(100.0)]"
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-90.0-[_airTubeViewOne(100.0)]"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-177.0-[_airTubeView(100.0)]"
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-177.0-[_airTubeViewOne(100.0)]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:views]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-250.0-[_airTubeViewTwo(100.0)]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:views]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-177.0-[_airTubeViewTwo(100.0)]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:views]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-350.0-[_airTubeViewThree(100.0)]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:views]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-177.0-[_airTubeViewThree(100.0)]"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];
@@ -98,14 +130,22 @@
 
 #pragma mark - airPumpOne delegate methods
 
-- (void)didTapOnAirPump:(UIView *)airPumpOne {
+- (void)didTapOnAirPump:(UIView *)airPumpView atPosition:(NSString *)position {
     [UIView animateWithDuration:5.0f animations:^{
         self.balloonView.transform = CGAffineTransformMakeScale(self.size, self.size);
     } completion:^(BOOL finished) {
-        [self.airTubeView animateIdeaAlongAirTube];
+        if ([position isEqualToString:@"Left"]) {
+            [self.airTubeViewOne animateIdeaAlongAirTubeAtPosition:@"Left"];
+        }
+        else if ([position isEqualToString:@"Center"]) {
+            [self.airTubeViewTwo animateIdeaAlongAirTubeAtPosition:@"Left"];
+        }
+        else if ([position isEqualToString:@"Right"]) {
+            [self.airTubeViewThree animateIdeaAlongAirTubeAtPosition:@"Left"];
+        }
     }];
     self.size = self.size * 1.5f;
-    [self.airTubeView.circleView removeFromSuperview];
+    [self.airTubeViewOne.circleView removeFromSuperview];
 }
 
 @end

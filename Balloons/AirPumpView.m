@@ -65,7 +65,10 @@
                                               self.stick.frame = CGRectMake(60.0f, 0, 40.0f, 20.0f);
                                           }
                           ];
-                         [self.delegate didTapOnAirPump:self];
+                         if (((UIButton *)sender).identification == 0) {
+                             [self.delegate didTapOnAirPump:self atPosition:@"Left"];
+                         }
+                         
                      }
      ];
 }

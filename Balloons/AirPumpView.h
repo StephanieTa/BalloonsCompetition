@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) UIButton *airPump;
 @property (nonatomic, strong) UIView *stick;
+@property (nonatomic) NSNumber *identification;
 @property (nonatomic, weak) id <AirPumpViewDelegate> delegate;
 
 - (void)initAirPump;
@@ -22,7 +23,6 @@
 
 @protocol AirPumpViewDelegate <NSObject>
 
-- (void)didTapOnAirPump:(UIView *)airPumpView;
+- (void)didTapOnAirPump:(UIView *)airPumpView atPosition:(NSString *)position;
 
 @end
-

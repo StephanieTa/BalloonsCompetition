@@ -10,20 +10,39 @@
 
 #import "UIBezierPath+AirTubeGlyphLeft.h"
 
+@interface AirTubeView ()
+
+- (void)drawAirTubeCurveWithPosition:(NSString *)position;
+
+@end
+
 @implementation AirTubeView
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self drawAirTubeCurveLeft];
+        [self drawAirTubeCurveWithPosition:@"Left"];
+        [self drawAirTubeCurveWithPosition:@"Center"];
+        [self drawAirTubeCurveWithPosition:@"Right"];
     }
     return self;
 }
 
-- (void)drawAirTubeCurveLeft {
+- (void)drawAirTubeCurveWithPosition:(NSString *)position {
+    UIBezierPath *path;
+    if ([position isEqualToString:@"Left"]) {
+        path = [UIBezierPath airTubeGlyphLeft];
+    }
+    else if ([position isEqualToString:@"Center"]) {
+        path = [UIBezierPath airTubeGlyphLeft];
+    }
+    else if ([position isEqualToString:@"Right"]) {
+        path = [UIBezierPath airTubeGlyphLeft];
+    }
+    
     UIGraphicsBeginImageContext(CGSizeMake(100.0f, 100.0f));
     
-    UIBezierPath *tube = [UIBezierPath airTubeGlyphLeft];
+    UIBezierPath *tube = path;
     [[UIColor blackColor] setStroke];
     tube.lineWidth = 1.0f;
     [tube stroke];
@@ -35,7 +54,17 @@
     [self addSubview:tubeImageView];
 }
 
-- (void)animateIdeaAlongAirTube {
+- (void)animateIdeaAlongAirTubeAtPosition:(NSString *)position {
+    UIBezierPath *path;
+    if ([position isEqualToString:@"Left"]) {
+        path = [UIBezierPath airTubeGlyphLeft];
+    }
+    else if ([position isEqualToString:@"Center"]) {
+        path = [UIBezierPath airTubeGlyphLeft];
+    }
+    else if ([position isEqualToString:@"Right"]) {
+        path = [UIBezierPath airTubeGlyphLeft];
+    }
     
 	//Prepare the animation
 	CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
@@ -48,7 +77,7 @@
 	//Setup the path for the animation
     
     CGPathRef tubePath = CGPathCreateMutable();
-    tubePath = [UIBezierPath airTubeGlyphLeft].CGPath;
+    tubePath = path.CGPath;
 	pathAnimation.path = tubePath;
 	
 	// Set up moving circle
