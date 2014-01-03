@@ -49,9 +49,17 @@
     self.size = 1.5f;
 //    [self.view addSubview:self.balloonView];
     
+    // Set up air tube
+    
+    self.airTubeView = [[AirTubeView alloc] init];
+    self.airTubeView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.airTubeView.backgroundColor = [UIColor redColor];
+//    self.airTubeView.opaque = NO;
+    [self.view addSubview:self.airTubeView];
+    
     // Constraints
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_airPumpOne, _airPumpTwo, _airPumpThree);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_airPumpOne, _airPumpTwo, _airPumpThree, _airTubeView);
     
 //    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0]];
 //    
@@ -59,12 +67,14 @@
 //    
 //    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:80.0f]];
     
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-80.0-[_airTubeView(100.0)]" options:0 metrics:nil views:views]];
+    
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_airPumpOne][_airPumpTwo(==_airPumpOne)][_airPumpThree(==_airPumpOne)]|"
                                                                       options:NSLayoutFormatAlignAllBottom
                                                                       metrics:nil
                                                                         views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airPumpOne(100.0)]|"
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airTubeView(100.0)][_airPumpOne(100.0)]|"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];
