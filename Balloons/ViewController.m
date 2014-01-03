@@ -37,7 +37,7 @@
     
     self.airPumpThree = [[AirPumpView alloc] init];
     self.airPumpThree.translatesAutoresizingMaskIntoConstraints = NO;
-    self.airPumpThree.backgroundColor = [UIColor whiteColor];
+    self.airPumpThree.backgroundColor = [UIColor greenColor];
     self.airPumpThree.delegate = self;
     [self.view addSubview:self.airPumpThree];
     
@@ -60,11 +60,19 @@
 //    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:80.0f]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_airPumpOne][_airPumpTwo(==_airPumpOne)][_airPumpThree(==_airPumpOne)]|"
-                                                                     options:NSLayoutFormatAlignAllBottom
-                                                                     metrics:nil
-                                                                       views:views]];
+                                                                      options:NSLayoutFormatAlignAllBottom
+                                                                      metrics:nil
+                                                                        views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airPumpOne(150.0)]-(10.0)-|"
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airPumpOne(100.0)]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airPumpTwo(100.0)]|"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airPumpThree(100.0)]|"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];

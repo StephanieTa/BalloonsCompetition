@@ -21,31 +21,26 @@
     
     // Set up air pump top
     
-    self.stick = [[UIView alloc] init];
-    self.stick.translatesAutoresizingMaskIntoConstraints = NO;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onAirPumpTouchUpInside:)];
-    [self.stick addGestureRecognizer:tapGesture];
+    self.stick = [[UIView alloc] initWithFrame:CGRectMake(60.0f, 0, 40.0f, 20.0f)];
     UIImageView *stickView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"luftpumpeTop.png"]];
-    stickView.frame = self.stick.frame;
+    stickView.frame = CGRectMake(0, 0, 40.0f, 20.0f);
     [self.stick addSubview:stickView];
     [self addSubview:self.stick];
     
     // Set up air pump bottom
     
-    self.airPump = [[UIButton alloc] init];
-    self.airPump.translatesAutoresizingMaskIntoConstraints = NO;
+    self.airPump = [[UIButton alloc] initWithFrame:CGRectMake(60.0f, 35.0f, 40.0f, 50.0f)];
     UIImage *airPumpImg = [UIImage imageNamed:@"luftpumpe.png"];
     [self.airPump setBackgroundImage:airPumpImg forState:UIControlStateNormal];
     self.airPump.userInteractionEnabled = YES;
-    [self.airPump addTarget:self action:@selector(onAirPumpTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.airPump];
+
+    // Actions
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_stick, _airPump);
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onAirPumpTouchUpInside:)];
+    [self.stick addGestureRecognizer:tapGesture];
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-10.0-[_stick(10.0)]-10.0-[_airPump]-10.0-|" options:NSLayoutFormatAlignAllCenterX metrics:nil views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10.0-[_airPump]-10.0-|" options:0 metrics:nil views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-10.0-[_stick]-10.0-|" options:0 metrics:nil views:views]];
-    
+    [self.airPump addTarget:self action:@selector(onAirPumpTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -62,12 +57,12 @@
 - (void)onAirPumpTouchUpInside:(id)sender {
     [UIView animateWithDuration:0.5f
                      animations:^{
-                         self.stick.frame = CGRectMake(0, 20.0f, 80.0f, 40.0f);
+                         self.stick.frame = CGRectMake(60.0f, 20.0f, 40.0f, 20.0f);
                      }
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:0.5f
                                           animations:^{
-                                              self.stick.frame = CGRectMake(0, 0, 80.0f, 40.0f);
+                                              self.stick.frame = CGRectMake(60.0f, 0, 40.0f, 20.0f);
                                           }
                           ];
                          [self.delegate didTapOnAirPump:self];
