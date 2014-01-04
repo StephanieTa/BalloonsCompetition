@@ -13,8 +13,6 @@
 
 @interface AirTubeView ()
 
-- (void)drawAirTubeAtPosition:(NSString *)position;
-
 @end
 
 
@@ -23,9 +21,9 @@
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self drawAirTubeAtPosition:@"Left"];
-        [self drawAirTubeAtPosition:@"Center"];
-        [self drawAirTubeAtPosition:@"Right"];
+        self.backgroundColor = nil;
+        self.opaque = NO;
+        self.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return self;
 }

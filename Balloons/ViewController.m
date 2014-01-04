@@ -10,11 +10,13 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+
 @interface ViewController ()
 
 @property (nonatomic) CGFloat size;
 
 @end
+
 
 @implementation ViewController
 
@@ -52,24 +54,18 @@
     // Set up air tubes
     
     self.airTubeViewOne = [[AirTubeView alloc] init];
-    self.airTubeViewOne.translatesAutoresizingMaskIntoConstraints = NO;
-    self.airTubeViewOne.backgroundColor = nil;
-    self.airTubeViewOne.opaque = NO;
+    [self.airTubeViewOne drawAirTubeAtPosition:@"Left"];
     [self.view addSubview:self.airTubeViewOne];
     
     self.airTubeViewTwo = [[AirTubeView alloc] init];
-    self.airTubeViewTwo.translatesAutoresizingMaskIntoConstraints = NO;
-    self.airTubeViewTwo.backgroundColor = nil;
-    self.airTubeViewTwo.opaque = NO;
+    [self.airTubeViewTwo drawAirTubeAtPosition:@"Center"];
     [self.view addSubview:self.airTubeViewTwo];
     
     self.airTubeViewThree = [[AirTubeView alloc] init];
-    self.airTubeViewThree.translatesAutoresizingMaskIntoConstraints = NO;
-    self.airTubeViewThree.backgroundColor = nil;
-    self.airTubeViewThree.opaque = NO;
+    [self.airTubeViewThree drawAirTubeAtPosition:@"Right"];
     [self.view addSubview:self.airTubeViewThree];
     
-    // Constraints
+    // Layout
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_airPumpOne, _airPumpTwo, _airPumpThree, _airTubeViewOne, _airTubeViewTwo, _airTubeViewThree);
     
@@ -128,7 +124,7 @@
                                                                         views:views]];
 }
 
-#pragma mark - airPumpOne delegate methods
+#pragma mark - airPump delegate methods
 
 - (void)didTapOnAirPump:(UIView *)airPumpView {
     [UIView animateWithDuration:5.0f animations:^{
