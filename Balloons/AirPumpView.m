@@ -65,10 +65,7 @@
                                               self.stick.frame = CGRectMake(60.0f, 0, 40.0f, 20.0f);
                                           }
                           ];
-                         if (((UIButton *)sender).identification == 0) {
-                             [self.delegate didTapOnAirPump:self atPosition:@"Left"];
-                         }
-                         
+                             [self.delegate didTapOnAirPump:self];
                      }
      ];
 }

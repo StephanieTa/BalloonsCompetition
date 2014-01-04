@@ -130,22 +130,21 @@
 
 #pragma mark - airPumpOne delegate methods
 
-- (void)didTapOnAirPump:(UIView *)airPumpView atPosition:(NSString *)position {
+- (void)didTapOnAirPump:(UIView *)airPumpView {
     [UIView animateWithDuration:5.0f animations:^{
-        self.balloonView.transform = CGAffineTransformMakeScale(self.size, self.size);
-    } completion:^(BOOL finished) {
-        if ([position isEqualToString:@"Left"]) {
+        if ([airPumpView isEqual:self.airPumpOne]) {
             [self.airTubeViewOne animateIdeaAlongAirTubeAtPosition:@"Left"];
         }
-        else if ([position isEqualToString:@"Center"]) {
-            [self.airTubeViewTwo animateIdeaAlongAirTubeAtPosition:@"Left"];
+        else if ([airPumpView isEqual:self.airPumpTwo]) {
+            [self.airTubeViewTwo animateIdeaAlongAirTubeAtPosition:@"Center"];
         }
-        else if ([position isEqualToString:@"Right"]) {
-            [self.airTubeViewThree animateIdeaAlongAirTubeAtPosition:@"Left"];
+        else if ([airPumpView isEqual:self.airPumpThree]) {
+            [self.airTubeViewThree animateIdeaAlongAirTubeAtPosition:@"Right"];
         }
+    } completion:^(BOOL finished) {
+        self.balloonView.transform = CGAffineTransformMakeScale(self.size, self.size);
     }];
     self.size = self.size * 1.5f;
-    [self.airTubeViewOne.circleView removeFromSuperview];
 }
 
 @end

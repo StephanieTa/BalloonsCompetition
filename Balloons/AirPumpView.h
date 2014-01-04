@@ -23,6 +23,6 @@
 
 @protocol AirPumpViewDelegate <NSObject>
 
-- (void)didTapOnAirPump:(UIView *)airPumpView atPosition:(NSString *)position;
+- (void)didTapOnAirPump:(UIView *)airPumpView;
 
 @end

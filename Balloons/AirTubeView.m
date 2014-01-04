@@ -93,8 +93,13 @@
 	self.circleView.frame = CGRectMake(0, 0, 100.0f, 100.0f);
 	[self addSubview:self.circleView];
     
+    [CATransaction begin];
+    [CATransaction setCompletionBlock:^{
+        [self.circleView removeFromSuperview];
+    }];
 	//Add the animation to the circleView - once you add the animation to the layer, the animation starts
 	[self.circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
+    [CATransaction commit];
 }
 
 @end
