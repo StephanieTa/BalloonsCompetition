@@ -10,42 +10,48 @@
 
 #import "UIBezierPath+AirTubeGlyphLeft.h"
 
+
 @interface AirTubeView ()
 
-- (void)drawAirTubeCurveWithPosition:(NSString *)position;
+- (void)drawAirTubeAtPosition:(NSString *)position;
 
 @end
+
 
 @implementation AirTubeView
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self drawAirTubeCurveWithPosition:@"Left"];
-        [self drawAirTubeCurveWithPosition:@"Center"];
-        [self drawAirTubeCurveWithPosition:@"Right"];
+        [self drawAirTubeAtPosition:@"Left"];
+        [self drawAirTubeAtPosition:@"Center"];
+        [self drawAirTubeAtPosition:@"Right"];
     }
     return self;
 }
 
-- (void)drawAirTubeCurveWithPosition:(NSString *)position {
-    UIBezierPath *path;
+- (void)drawAirTubeAtPosition:(NSString *)position {
+    
+    // Check which path to draw
+    
+    UIBezierPath *tubePath;
     if ([position isEqualToString:@"Left"]) {
-        path = [UIBezierPath airTubeGlyphLeft];
+        tubePath = [UIBezierPath airTubeGlyphLeft];
     }
     else if ([position isEqualToString:@"Center"]) {
-        path = [UIBezierPath airTubeGlyphLeft];
+        tubePath = [UIBezierPath airTubeGlyphLeft];
     }
     else if ([position isEqualToString:@"Right"]) {
-        path = [UIBezierPath airTubeGlyphLeft];
+        tubePath = [UIBezierPath airTubeGlyphLeft];
     }
+    
+    // Draw path
     
     UIGraphicsBeginImageContext(CGSizeMake(100.0f, 100.0f));
     
-    UIBezierPath *tube = path;
+    tubePath.lineWidth = 1.0f;
     [[UIColor blackColor] setStroke];
-    tube.lineWidth = 1.0f;
-    [tube stroke];
+    [tubePath stroke];
     
     UIImage *tubeImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
@@ -55,36 +61,34 @@
 }
 
 - (void)animateIdeaAlongAirTubeAtPosition:(NSString *)position {
-    UIBezierPath *path;
-    if ([position isEqualToString:@"Left"]) {
-        path = [UIBezierPath airTubeGlyphLeft];
-    }
-    else if ([position isEqualToString:@"Center"]) {
-        path = [UIBezierPath airTubeGlyphLeft];
-    }
-    else if ([position isEqualToString:@"Right"]) {
-        path = [UIBezierPath airTubeGlyphLeft];
-    }
     
-	//Prepare the animation
+	// Prepare the animation
+    
 	CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
 	pathAnimation.calculationMode = kCAAnimationPaced;
 	pathAnimation.fillMode = kCAFillModeForwards;
-	pathAnimation.removedOnCompletion = NO;
 	pathAnimation.duration = 5.0;
-	pathAnimation.repeatCount = 1;
-	
-	//Setup the path for the animation
     
-    CGPathRef tubePath = CGPathCreateMutable();
-    tubePath = path.CGPath;
-	pathAnimation.path = tubePath;
+    // Check from which airPump tap comes from to set up the path for the animation
+    
+    UIBezierPath *tubePath;
+    if ([position isEqualToString:@"Left"]) {
+        tubePath = [UIBezierPath airTubeGlyphLeft];
+    }
+    else if ([position isEqualToString:@"Center"]) {
+        tubePath = [UIBezierPath airTubeGlyphLeft];
+    }
+    else if ([position isEqualToString:@"Right"]) {
+        tubePath = [UIBezierPath airTubeGlyphLeft];
+    }
+	pathAnimation.path = tubePath.CGPath;
 	
 	// Set up moving circle
+    
 	UIGraphicsBeginImageContext(CGSizeMake(100.0f, 100.0f));
 	CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextAddEllipseInRect(context, CGRectMake(47.5f, 47.5f, 5.0f, 5.0f));
 	CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
-	CGContextAddEllipseInRect(context, CGRectMake(47.5f, 47.5f, 5.0f, 5.0f));
 	CGContextDrawPath(context, kCGPathFillStroke);
 	UIImage *circle = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
@@ -93,11 +97,12 @@
 	self.circleView.frame = CGRectMake(0, 0, 100.0f, 100.0f);
 	[self addSubview:self.circleView];
     
+    // Animation
+    
     [CATransaction begin];
     [CATransaction setCompletionBlock:^{
         [self.circleView removeFromSuperview];
     }];
-	//Add the animation to the circleView - once you add the animation to the layer, the animation starts
 	[self.circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
     [CATransaction commit];
 }
