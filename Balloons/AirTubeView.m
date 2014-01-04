@@ -8,7 +8,7 @@
 
 #import "AirTubeView.h"
 
-#import "UIBezierPath+AirTubeGlyphLeft.h"
+#import "UIBezierPath+AirTubeGlyph.h"
 
 
 @interface AirTubeView ()

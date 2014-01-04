@@ -23,31 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Set up air pumps
-    
-    self.airPumpOne = [[AirPumpView alloc] init];
-    self.airPumpOne.backgroundColor = [UIColor blueColor];
-    self.airPumpOne.delegate = self;
-    [self.view addSubview:self.airPumpOne];
-    
-    self.airPumpTwo = [[AirPumpView alloc] init];
-    self.airPumpTwo.backgroundColor = [UIColor yellowColor];
-    self.airPumpTwo.delegate = self;
-    [self.view addSubview:self.airPumpTwo];
-    
-    self.airPumpThree = [[AirPumpView alloc] init];
-    self.airPumpThree.backgroundColor = [UIColor greenColor];
-    self.airPumpThree.delegate = self;
-    [self.view addSubview:self.airPumpThree];
-    
-    // Set up balloon
-    
-    self.balloonView = [[BalloonView alloc] init];
-    self.balloonView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.balloonView.backgroundColor = [UIColor redColor];
-    self.size = 1.5f;
-//    [self.view addSubview:self.balloonView];
-    
     // Set up air tubes
     
     self.airTubeViewOne = [[AirTubeView alloc] init];
@@ -61,6 +36,28 @@
     self.airTubeViewThree = [[AirTubeView alloc] init];
     [self.airTubeViewThree drawAirTubeAtPosition:@"Right"];
     [self.view addSubview:self.airTubeViewThree];
+    
+    // Set up air pumps
+    
+    self.airPumpOne = [[AirPumpView alloc] init];
+    self.airPumpOne.delegate = self;
+    [self.view addSubview:self.airPumpOne];
+    
+    self.airPumpTwo = [[AirPumpView alloc] init];
+    self.airPumpTwo.delegate = self;
+    [self.view addSubview:self.airPumpTwo];
+    
+    self.airPumpThree = [[AirPumpView alloc] init];
+    self.airPumpThree.delegate = self;
+    [self.view addSubview:self.airPumpThree];
+    
+    // Set up balloon
+    
+    self.balloonView = [[BalloonView alloc] init];
+    self.balloonView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.balloonView.backgroundColor = [UIColor redColor];
+    self.size = 1.5f;
+//    [self.view addSubview:self.balloonView];
     
     // Layout
     

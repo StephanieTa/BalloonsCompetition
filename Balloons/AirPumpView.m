@@ -47,6 +47,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.frame = frame;
+        self.backgroundColor = nil;
+        self.opaque = NO;
         self.translatesAutoresizingMaskIntoConstraints = NO;
         [self initAirPump];
     }

@@ -10,7 +10,7 @@
 		210DC09F187081360092E6B8 /* UIColor+ColorTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 210DC09E187081360092E6B8 /* UIColor+ColorTools.m */; };
 		210DC0A2187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 210DC0A1187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m */; };
 		21310025187714A700519753 /* AirTubeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21310024187714A700519753 /* AirTubeView.m */; };
-		2131002C1877221400519753 /* UIBezierPath+AirTubeGlyphLeft.m in Sources */ = {isa = PBXBuildFile; fileRef = 2131002B1877221400519753 /* UIBezierPath+AirTubeGlyphLeft.m */; };
+		21560D5C1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 21560D5B1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.m */; };
 		219BDF5B186C5C2F0059EC55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5A186C5C2F0059EC55 /* UIKit.framework */; };
 		219BDF5D186C5C2F0059EC55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5C186C5C2F0059EC55 /* Foundation.framework */; };
 		219BDF5F186C5C2F0059EC55 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5E186C5C2F0059EC55 /* CoreGraphics.framework */; };
@@ -39,8 +39,8 @@
 		210DC0A1187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+BalloonGlyph.m"; sourceTree = "<group>"; };
 		21310023187714A700519753 /* AirTubeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirTubeView.h; sourceTree = "<group>"; };
 		21310024187714A700519753 /* AirTubeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirTubeView.m; sourceTree = "<group>"; };
-		2131002A1877221400519753 /* UIBezierPath+AirTubeGlyphLeft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+AirTubeGlyphLeft.h"; sourceTree = "<group>"; };
-		2131002B1877221400519753 /* UIBezierPath+AirTubeGlyphLeft.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+AirTubeGlyphLeft.m"; sourceTree = "<group>"; };
+		21560D5A1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+AirTubeGlyph.h"; sourceTree = "<group>"; };
+		21560D5B1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+AirTubeGlyph.m"; sourceTree = "<group>"; };
 		219BDF57186C5C2F0059EC55 /* Balloons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Balloons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		219BDF5A186C5C2F0059EC55 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		219BDF5C186C5C2F0059EC55 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -91,8 +91,8 @@
 			children = (
 				210DC0A0187082A90092E6B8 /* UIBezierPath+BalloonGlyph.h */,
 				210DC0A1187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m */,
-				2131002A1877221400519753 /* UIBezierPath+AirTubeGlyphLeft.h */,
-				2131002B1877221400519753 /* UIBezierPath+AirTubeGlyphLeft.m */,
+				21560D5A1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.h */,
+				21560D5B1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.m */,
 			);
 			path = Glyphs;
 			sourceTree = "<group>";
@@ -252,8 +252,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				219BDF67186C5C2F0059EC55 /* main.m in Sources */,
+				21560D5C1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.m in Sources */,
 				219BDF6B186C5C2F0059EC55 /* AppDelegate.m in Sources */,
-				2131002C1877221400519753 /* UIBezierPath+AirTubeGlyphLeft.m in Sources */,
 				219BDF77186C5C2F0059EC55 /* ViewController.m in Sources */,
 				219BDF82186C699E0059EC55 /* AirPumpView.m in Sources */,
 				219BDF85186C71810059EC55 /* BalloonView.m in Sources */,
