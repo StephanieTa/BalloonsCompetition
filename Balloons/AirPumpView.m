@@ -47,6 +47,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.frame = frame;
+        self.translatesAutoresizingMaskIntoConstraints = NO;
         [self initAirPump];
     }
     return self;

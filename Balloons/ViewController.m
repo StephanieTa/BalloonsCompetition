@@ -26,19 +26,16 @@
     // Set up air pumps
     
     self.airPumpOne = [[AirPumpView alloc] init];
-    self.airPumpOne.translatesAutoresizingMaskIntoConstraints = NO;
     self.airPumpOne.backgroundColor = [UIColor blueColor];
     self.airPumpOne.delegate = self;
     [self.view addSubview:self.airPumpOne];
     
     self.airPumpTwo = [[AirPumpView alloc] init];
-    self.airPumpTwo.translatesAutoresizingMaskIntoConstraints = NO;
     self.airPumpTwo.backgroundColor = [UIColor yellowColor];
     self.airPumpTwo.delegate = self;
     [self.view addSubview:self.airPumpTwo];
     
     self.airPumpThree = [[AirPumpView alloc] init];
-    self.airPumpThree.translatesAutoresizingMaskIntoConstraints = NO;
     self.airPumpThree.backgroundColor = [UIColor greenColor];
     self.airPumpThree.delegate = self;
     [self.view addSubview:self.airPumpThree];
