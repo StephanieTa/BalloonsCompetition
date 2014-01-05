@@ -14,7 +14,6 @@
 
 @property (nonatomic, strong) UIButton *bottom;
 @property (nonatomic, strong) UIView *top;
-@property (nonatomic) NSNumber *identification;
 @property (nonatomic, weak) id <AirPumpViewDelegate> delegate;
 
 - (void)initAirPump;

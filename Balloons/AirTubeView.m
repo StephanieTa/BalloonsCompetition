@@ -11,11 +11,6 @@
 #import "UIBezierPath+AirTubeGlyph.h"
 
 
-@interface AirTubeView ()
-
-@end
-
-
 @implementation AirTubeView
 
 - (id)initWithFrame:(CGRect)frame {
@@ -45,7 +40,7 @@
     }
     else if ([position isEqualToString:@"Right"]) {
         tubePath = [UIBezierPath airTubeGlyphRight];
-        imageContext = CGSizeMake(210.0f, 160.0f);
+        imageContext = CGSizeMake(220.0f, 160.0f);
     }
     
     // Draw path
@@ -93,9 +88,9 @@
     }
     else if ([position isEqualToString:@"Right"]) {
         tubePath = [UIBezierPath airTubeGlyphRight];
-        imageContext = CGSizeMake(210.0f, 160.0f);
-        circleRect = CGRectMake(103.0f, 77.5f, 4.0f, 4.0f);
-        circleViewFrame = CGRectMake(0, 0, 210.0f, 160.0f);
+        imageContext = CGSizeMake(220.0f, 160.0f);
+        circleRect = CGRectMake(107.0f, 77.5f, 4.0f, 4.0f);
+        circleViewFrame = CGRectMake(0, 0, 220.0f, 160.0f);
     }
 	pathAnimation.path = tubePath.CGPath;
 	

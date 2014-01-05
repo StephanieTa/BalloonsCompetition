@@ -21,7 +21,7 @@
     
     // Set up air pump top
     
-    self.top = [[UIView alloc] initWithFrame:CGRectMake(61.0f, 20.0f, 40.0f, 20.0f)];
+    self.top = [[UIView alloc] initWithFrame:CGRectMake(0, 20.0f, 40.0f, 20.0f)];
     UIImageView *topView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"airPumpTop.png"]];
     topView.frame = CGRectMake(0, 0, 40.0f, 20.0f);
     [self.top addSubview:topView];
@@ -29,7 +29,7 @@
     
     // Set up air pump bottom
     
-    self.bottom = [[UIButton alloc] initWithFrame:CGRectMake(60.0f, 35.0f, 40.0f, 50.0f)];
+    self.bottom = [[UIButton alloc] initWithFrame:CGRectMake(0, 35.0f, 40.0f, 50.0f)];
     UIImage *airPumpBottomImg = [UIImage imageNamed:@"luftpumpe.png"];
     [self.bottom setBackgroundImage:airPumpBottomImg forState:UIControlStateNormal];
     self.bottom.userInteractionEnabled = YES;
@@ -60,12 +60,12 @@
 - (void)onAirPumpTouchUpInside:(id)sender {
     [UIView animateWithDuration:0.5f
                      animations:^{
-                         self.top.frame = CGRectMake(61.0f, 30.0f, 40.0f, 20.0f);
+                         self.top.frame = CGRectMake(0, 30.0f, 40.0f, 20.0f);
                      }
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:0.5f
                                           animations:^{
-                                              self.top.frame = CGRectMake(61.0f, 17.0f, 40.0f, 20.0f);
+                                              self.top.frame = CGRectMake(0, 17.0f, 40.0f, 20.0f);
                                           }
                           ];
                              [self.delegate didTapOnAirPump:self];
