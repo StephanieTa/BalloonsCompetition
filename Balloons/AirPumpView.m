@@ -21,26 +21,26 @@
     
     // Set up air pump top
     
-    self.stick = [[UIView alloc] initWithFrame:CGRectMake(60.0f, 0, 40.0f, 20.0f)];
-    UIImageView *stickView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"luftpumpeTop.png"]];
-    stickView.frame = CGRectMake(0, 0, 40.0f, 20.0f);
-    [self.stick addSubview:stickView];
-    [self addSubview:self.stick];
+    self.top = [[UIView alloc] initWithFrame:CGRectMake(61.0f, 20.0f, 40.0f, 20.0f)];
+    UIImageView *topView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"airPumpTop.png"]];
+    topView.frame = CGRectMake(0, 0, 40.0f, 20.0f);
+    [self.top addSubview:topView];
+    [self addSubview:self.top];
     
     // Set up air pump bottom
     
-    self.airPump = [[UIButton alloc] initWithFrame:CGRectMake(60.0f, 35.0f, 40.0f, 50.0f)];
-    UIImage *airPumpImg = [UIImage imageNamed:@"luftpumpe.png"];
-    [self.airPump setBackgroundImage:airPumpImg forState:UIControlStateNormal];
-    self.airPump.userInteractionEnabled = YES;
-    [self addSubview:self.airPump];
+    self.bottom = [[UIButton alloc] initWithFrame:CGRectMake(60.0f, 35.0f, 40.0f, 50.0f)];
+    UIImage *airPumpBottomImg = [UIImage imageNamed:@"luftpumpe.png"];
+    [self.bottom setBackgroundImage:airPumpBottomImg forState:UIControlStateNormal];
+    self.bottom.userInteractionEnabled = YES;
+    [self addSubview:self.bottom];
 
     // Actions
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onAirPumpTouchUpInside:)];
-    [self.stick addGestureRecognizer:tapGesture];
+    [self.top addGestureRecognizer:tapGesture];
     
-    [self.airPump addTarget:self action:@selector(onAirPumpTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
+    [self.bottom addTarget:self action:@selector(onAirPumpTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -60,12 +60,12 @@
 - (void)onAirPumpTouchUpInside:(id)sender {
     [UIView animateWithDuration:0.5f
                      animations:^{
-                         self.stick.frame = CGRectMake(60.0f, 20.0f, 40.0f, 20.0f);
+                         self.top.frame = CGRectMake(61.0f, 30.0f, 40.0f, 20.0f);
                      }
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:0.5f
                                           animations:^{
-                                              self.stick.frame = CGRectMake(60.0f, 0, 40.0f, 20.0f);
+                                              self.top.frame = CGRectMake(61.0f, 17.0f, 40.0f, 20.0f);
                                           }
                           ];
                              [self.delegate didTapOnAirPump:self];

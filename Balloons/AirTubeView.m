@@ -45,9 +45,9 @@
     
     // Draw path
     
-    UIGraphicsBeginImageContext(CGSizeMake(120.0f, 100.0f));
+    UIGraphicsBeginImageContext(CGSizeMake(125.0f, 165.0f));
     
-    tubePath.lineWidth = 1.0f;
+    tubePath.lineWidth = 3.0f;
     [[UIColor blackColor] setStroke];
     [tubePath stroke];
     
@@ -83,16 +83,16 @@
 	
 	// Set up moving circle
     
-	UIGraphicsBeginImageContext(CGSizeMake(120.0f, 100.0f));
+	UIGraphicsBeginImageContext(CGSizeMake(120.0f, 165.0f));
 	CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextAddEllipseInRect(context, CGRectMake(60.0f, 47.5f, 5.0f, 5.0f));
+    CGContextAddEllipseInRect(context, CGRectMake(57.0f, 79.5f, 4.0f, 4.0f));
 	CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
 	CGContextDrawPath(context, kCGPathFillStroke);
 	UIImage *circle = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
 	
     UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
-	circleView.frame = CGRectMake(0, 0, 120.0f, 100.0f);
+	circleView.frame = CGRectMake(0, 0, 120.0f, 165.0f);
 	[self addSubview:circleView];
     
     // Animation
