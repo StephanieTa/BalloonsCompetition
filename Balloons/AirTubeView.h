@@ -10,8 +10,6 @@
 
 @interface AirTubeView : UIView
 
-@property (nonatomic, strong) UIImageView *circleView;
-
 - (void)drawAirTubeAtPosition:(NSString *)position;
 - (void)animateIdeaAlongAirTubeAtPosition:(NSString *)position;
 

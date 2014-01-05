@@ -91,17 +91,17 @@
 	UIImage *circle = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
 	
-	self.circleView = [[UIImageView alloc] initWithImage:circle];
-	self.circleView.frame = CGRectMake(0, 0, 120.0f, 100.0f);
-	[self addSubview:self.circleView];
+    UIImageView *circleView = [[UIImageView alloc] initWithImage:circle];
+	circleView.frame = CGRectMake(0, 0, 120.0f, 100.0f);
+	[self addSubview:circleView];
     
     // Animation
     
     [CATransaction begin];
     [CATransaction setCompletionBlock:^{
-        [self.circleView removeFromSuperview];
+        [circleView removeFromSuperview];
     }];
-	[self.circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
+	[circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
     [CATransaction commit];
 }
 
