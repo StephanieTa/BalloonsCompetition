@@ -24,14 +24,6 @@
     [airTubePath addCurveToPoint:CGPointMake(175.84f, 25.07f) controlPoint1:CGPointMake(163.19f, 36.98f) controlPoint2:CGPointMake(212.11f, 35.11f)];
     [airTubePath addCurveToPoint:CGPointMake(191.3f, 16.79f) controlPoint1:CGPointMake(139.57f, 15.03f) controlPoint2:CGPointMake(191.3f, 16.79f)];
     [airTubePath addCurveToPoint:CGPointMake(212.95f, 3.0f) controlPoint1:CGPointMake(191.3f, 16.79f) controlPoint2:CGPointMake(214.21f, 16.45f)];
-    
-//    [airTubePath moveToPoint:CGPointMake(0, 80.0f)];
-//    [airTubePath addCurveToPoint:CGPointMake(42.86f, 61.55f) controlPoint1:CGPointMake(0, 80.0f) controlPoint2:CGPointMake(97.77f, 68.78f)];
-//    [airTubePath addCurveToPoint:CGPointMake(53.06f, 49.62f) controlPoint1:CGPointMake(-12.05, 54.77f) controlPoint2:CGPointMake(53.06f, 49.62f)];
-//    [airTubePath addCurveToPoint:CGPointMake(59.18f, 29.37f) controlPoint1:CGPointMake(53.06f, 49.62f) controlPoint2:CGPointMake(119.07f, 39.44f)];
-//    [airTubePath addCurveToPoint:CGPointMake(83.67f, 20.25f) controlPoint1:CGPointMake(-0.7, 19.3f) controlPoint2:CGPointMake(83.67f, 20.25f)];
-//    [airTubePath addCurveToPoint:CGPointMake(83.67f, 10.13f) controlPoint1:CGPointMake(83.67f, 20.25f) controlPoint2:CGPointMake(113.32f, 16.76f)];
-//    [airTubePath addCurveToPoint:CGPointMake(100.0f, 0) controlPoint1:CGPointMake(54.02f, 3.49f) controlPoint2:CGPointMake(100.0f, 0)];
     return airTubePath;
 }
 
@@ -52,6 +44,18 @@
 
 + (instancetype)airTubeGlyphRight {
     UIBezierPath *airTubePath = [UIBezierPath bezierPath];
+    [airTubePath moveToPoint:CGPointMake(188.6f, 163.0f)];
+    [airTubePath addCurveToPoint:CGPointMake(200.97f, 140.93f) controlPoint1:CGPointMake(188.6f, 163.0f) controlPoint2:CGPointMake(185.89f, 146.18f)];
+    [airTubePath addCurveToPoint:CGPointMake(148.4f, 113.34f) controlPoint1:CGPointMake(216.05f, 135.69f) controlPoint2:CGPointMake(231.8f, 110.08f)];
+    [airTubePath addCurveToPoint:CGPointMake(123.66f, 96.79f) controlPoint1:CGPointMake(65.0f, 116.61f) controlPoint2:CGPointMake(123.66f, 96.79f)];
+    [airTubePath addCurveToPoint:CGPointMake(111.29f, 83.0f) controlPoint1:CGPointMake(123.66f, 96.79f) controlPoint2:CGPointMake(161.52f, 85.39f)];
+    [airTubePath addCurveToPoint:CGPointMake(105.1f, 71.97f) controlPoint1:CGPointMake(61.06f, 80.61f) controlPoint2:CGPointMake(70.52f, 75.02f)];
+    [airTubePath addCurveToPoint:CGPointMake(95.83f, 60.93f) controlPoint1:CGPointMake(139.68f, 68.91f) controlPoint2:CGPointMake(112.5f, 61.85f)];
+    [airTubePath addCurveToPoint:CGPointMake(77.27f, 49.9f) controlPoint1:CGPointMake(79.15f, 60.01f) controlPoint2:CGPointMake(20.08f, 59.9f)];
+    [airTubePath addCurveToPoint:CGPointMake(61.81f, 38.86f) controlPoint1:CGPointMake(134.46f, 39.9f) controlPoint2:CGPointMake(70.8f, 40.74f)];
+    [airTubePath addCurveToPoint:CGPointMake(40.16f, 25.07f) controlPoint1:CGPointMake(52.81f, 36.98f) controlPoint2:CGPointMake(3.89f, 35.11f)];
+    [airTubePath addCurveToPoint:CGPointMake(24.7f, 16.79f) controlPoint1:CGPointMake(76.43f, 15.03f) controlPoint2:CGPointMake(24.7f, 16.79f)];
+    [airTubePath addCurveToPoint:CGPointMake(3.05f, 3.0f) controlPoint1:CGPointMake(24.7f, 16.79f) controlPoint2:CGPointMake(1.79f, 16.45f)];
     return airTubePath;
 }
 

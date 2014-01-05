@@ -93,12 +93,12 @@
                                                                       metrics:nil
                                                                         views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-350.0-[_airTubeViewThree(100.0)]"
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-260.0-[_airTubeViewThree(210.0)]"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-177.0-[_airTubeViewThree(100.0)]"
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-140.0-[_airTubeViewThree(160.0)]"
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];

@@ -44,7 +44,7 @@
         imageContext = CGSizeMake(125.0f, 165.0f);
     }
     else if ([position isEqualToString:@"Right"]) {
-        tubePath = [UIBezierPath airTubeGlyphLeft];
+        tubePath = [UIBezierPath airTubeGlyphRight];
         imageContext = CGSizeMake(210.0f, 160.0f);
     }
     
@@ -92,9 +92,9 @@
         circleViewFrame = CGRectMake(0, 0, 120.0f, 165.0);
     }
     else if ([position isEqualToString:@"Right"]) {
-        tubePath = [UIBezierPath airTubeGlyphLeft];
+        tubePath = [UIBezierPath airTubeGlyphRight];
         imageContext = CGSizeMake(210.0f, 160.0f);
-        circleRect = CGRectMake(105.0f, 79.5f, 4.0f, 4.0f);
+        circleRect = CGRectMake(103.0f, 77.5f, 4.0f, 4.0f);
         circleViewFrame = CGRectMake(0, 0, 210.0f, 160.0f);
     }
 	pathAnimation.path = tubePath.CGPath;
