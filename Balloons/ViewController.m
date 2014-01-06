@@ -57,22 +57,13 @@
     
     // Set up balloon
     
-    self.balloonView = [[BalloonView alloc] init];
-    self.balloonView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.balloonView.backgroundColor = [UIColor redColor];
+    self.balloonView = [[BalloonView alloc] initWithFrame:CGRectMake(190.0f, 30.0f, 100.0f, 100.0f)];
     self.size = 1.5f;
     [self.view addSubview:self.balloonView];
     
     // Layout
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_balloonView, _airPumpOne, _airPumpTwo, _airPumpThree, _airTubeViewOne, _airTubeViewTwo, _airTubeViewThree);
-    
-    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0]];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-90.0-[_balloonView(100.0)]"
-                                                                      options:0
-                                                                      metrics:nil
-                                                                        views:views]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25.0-[_airTubeViewOne(210.0)]"
                                                                       options:0
