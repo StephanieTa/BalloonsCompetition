@@ -26,7 +26,10 @@
 - (void)initBallon {
     UIGraphicsBeginImageContext(CGSizeMake(100.0f, 100.0f));
     
-    UIBezierPath *balloon = [UIBezierPath balloonGlyph];
+//    UIBezierPath *balloon = [UIBezierPath balloonGlyph];
+    UIBezierPath *balloon = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(CGRectGetMidX(self.superview.bounds), CGRectGetMidY(self.superview.bounds), 50.0f, 50.0f)];
+    [[UIColor blackColor] setStroke];
+    [balloon stroke];
     [[UIColor colorWithFloatRed:255.0f green:181.0f blue:59.0f alpha:1.0f] setFill];
     [balloon fill];
     

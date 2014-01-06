@@ -61,17 +61,18 @@
     self.balloonView.translatesAutoresizingMaskIntoConstraints = NO;
     self.balloonView.backgroundColor = [UIColor redColor];
     self.size = 1.5f;
-//    [self.view addSubview:self.balloonView];
+    [self.view addSubview:self.balloonView];
     
     // Layout
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_airPumpOne, _airPumpTwo, _airPumpThree, _airTubeViewOne, _airTubeViewTwo, _airTubeViewThree);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_balloonView, _airPumpOne, _airPumpTwo, _airPumpThree, _airTubeViewOne, _airTubeViewTwo, _airTubeViewThree);
     
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0]];
-//    
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:-200.0f]];
-//    
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:80.0f]];
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-90.0-[_balloonView(100.0)]"
+                                                                      options:0
+                                                                      metrics:nil
+                                                                        views:views]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25.0-[_airTubeViewOne(210.0)]"
                                                                       options:0
@@ -131,20 +132,26 @@
 #pragma mark - airPump delegate methods
 
 - (void)didTapOnAirPump:(UIView *)airPumpView {
+    
+    void (^completionBlock)(BOOL) = ^(BOOL finished) {
+        [UIView animateWithDuration:3.0f animations:^{
+            self.balloonView.transform = CGAffineTransformMakeScale(self.size, self.size);
+        } completion:^(BOOL finished) {
+            self.size = self.size * 1.5f;
+        }];
+    };
+    
     [UIView animateWithDuration:5.0f animations:^{
         if ([airPumpView isEqual:self.airPumpOne]) {
-            [self.airTubeViewOne animateIdeaAlongAirTubeAtPosition:@"Left"];
+            [self.airTubeViewOne animateIdeaAlongAirTubeAtPosition:@"Left" completion:completionBlock];
         }
         else if ([airPumpView isEqual:self.airPumpTwo]) {
-            [self.airTubeViewTwo animateIdeaAlongAirTubeAtPosition:@"Center"];
+            [self.airTubeViewTwo animateIdeaAlongAirTubeAtPosition:@"Center" completion:completionBlock];
         }
         else if ([airPumpView isEqual:self.airPumpThree]) {
-            [self.airTubeViewThree animateIdeaAlongAirTubeAtPosition:@"Right"];
+            [self.airTubeViewThree animateIdeaAlongAirTubeAtPosition:@"Right" completion:completionBlock];
         }
-    } completion:^(BOOL finished) {
-        self.balloonView.transform = CGAffineTransformMakeScale(self.size, self.size);
     }];
-    self.size = self.size * 1.5f;
 }
 
 @end

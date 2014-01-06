@@ -58,7 +58,7 @@
     [self addSubview:tubeImageView];
 }
 
-- (void)animateIdeaAlongAirTubeAtPosition:(NSString *)position {
+- (void)animateIdeaAlongAirTubeAtPosition:(NSString *)position completion:(void (^)(BOOL finished))completionBlock {
     
 	// Prepare the animation
     
@@ -113,6 +113,7 @@
     [CATransaction begin];
     [CATransaction setCompletionBlock:^{
         [circleView removeFromSuperview];
+        completionBlock(YES);
     }];
 	[circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
     [CATransaction commit];
