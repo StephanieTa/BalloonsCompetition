@@ -13,9 +13,18 @@
 #import "UIColor+ColorTools.h"
 
 
+static CGFloat const balloonSize = 100.0f;
+
+
 @interface ViewController ()
 
-@property (nonatomic) CGFloat size;
+@property (nonatomic) NSInteger round;
+@property (nonatomic) BOOL yTurn;
+@property (nonatomic) NSInteger changeNr;
+@property (nonatomic) CGPoint point;
+
+- (void)addIdeaToBalloon;
+- (void)drawDotAtPoint:(CGPoint)point;
 
 @end
 
@@ -57,9 +66,15 @@
     
     // Set up balloon
     
-    self.balloonView = [[BalloonView alloc] initWithFrame:CGRectMake(190.0f, 30.0f, 100.0f, 100.0f)];
-    self.size = 1.5f;
+    self.balloonView = [[BalloonView alloc] initWithFrame:CGRectMake(190.0f, 30.0f, balloonSize, balloonSize)];
     [self.view addSubview:self.balloonView];
+    
+    // Calculation properties
+    
+    self.round = 0;
+    self.yTurn = YES;
+    self.changeNr = 1;
+    self.point = CGPointMake(balloonSize/2.0f, balloonSize/2.0f);
     
     // Layout
     
@@ -125,11 +140,7 @@
 - (void)didTapOnAirPump:(UIView *)airPumpView {
     
     void (^completionBlock)(BOOL) = ^(BOOL finished) {
-        [UIView animateWithDuration:3.0f animations:^{
-            self.balloonView.transform = CGAffineTransformMakeScale(self.size, self.size);
-        } completion:^(BOOL finished) {
-            self.size = self.size * 1.5f;
-        }];
+        [self addIdeaToBalloon];
     };
     
     [UIView animateWithDuration:5.0f animations:^{
@@ -143,6 +154,77 @@
             [self.airTubeViewThree animateIdeaAlongAirTubeAtPosition:@"Right" completion:completionBlock];
         }
     }];
+}
+
+- (void)addIdeaToBalloon {
+    CGPoint point = self.point;
+    
+    // Calculate point at where to add new idea
+    
+    if (self.round == 0) {
+        [self drawDotAtPoint:point];
+        self.round++;
+    }
+    else {
+        if (self.round % 2 == 1) {
+            if (self.yTurn) {
+                point.y = point.y - 10.0f;
+                if (self.changeNr == self.round) {
+                    self.yTurn = NO;
+                }
+                self.changeNr++;
+            }
+            else {
+                point.x = point.x - 10.0f;
+                if (self.changeNr == self.round * 2) {
+                    self.yTurn = YES;
+                    self.changeNr = 1;
+                    self.round++;
+                }
+                else {
+                    self.changeNr++;
+                }
+            }
+        }
+        else if (self.round % 2 == 0) {
+            if (self.yTurn) {
+                point.y = point.y + 10.0f;
+                if (self.changeNr == self.round) {
+                    self.yTurn = NO;
+                }
+                self.changeNr++;
+            }
+            else {
+                point.x = point.x + 10.0f;
+                if (self.changeNr == self.round * 2) {
+                    self.yTurn = YES;
+                    self.changeNr = 1;
+                    self.round++;
+                }
+                else {
+                    self.changeNr++;
+                }
+            }
+        }
+        self.point = point;
+        
+        // Draw dot at calculated point
+        [self drawDotAtPoint:point];
+    }
+}
+
+- (void)drawDotAtPoint:(CGPoint)point {
+    UIGraphicsBeginImageContext(CGSizeMake(balloonSize, balloonSize));
+    
+    UIBezierPath *dotPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(point.x, point.y, 8.0f, 8.0f)];
+    [[UIColor blackColor] setFill];
+    [dotPath fill];
+    
+    UIImage *dotImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIImageView *dotImageView = [[UIImageView alloc] initWithImage:dotImage];
+    [self.balloonView addSubview:dotImageView];
 }
 
 @end

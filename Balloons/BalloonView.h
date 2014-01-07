@@ -8,11 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ParticleSystemView.h"
-
 @interface BalloonView : UIView
-
-@property (nonatomic, strong) UIView *ballon;
-@property (nonatomic, strong) ParticleSystemView *ideaCloud;
 
 @end

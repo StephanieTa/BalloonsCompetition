@@ -22,9 +22,6 @@
     [balloonPath addCurveToPoint:CGPointMake(4.5f, 16.5f) controlPoint1:CGPointMake(22.5f, 3.5f) controlPoint2:CGPointMake(8.47f, 1.06f)];
     [balloonPath addCurveToPoint:CGPointMake(10.5f, 42.5f) controlPoint1:CGPointMake(0.53f, 31.94f) controlPoint2:CGPointMake(6.95f, 37.01f)];
     [balloonPath addCurveToPoint:CGPointMake(21.5f, 49.5f) controlPoint1:CGPointMake(14.05f, 47.99f) controlPoint2:CGPointMake(21.5f, 49.5f)];
-    [[UIColor blackColor] setStroke];
-    balloonPath.lineWidth = 1.0f;
-    [balloonPath stroke];
     return balloonPath;
 }
 

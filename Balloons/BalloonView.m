@@ -26,24 +26,19 @@
 - (void)initBallon {
     UIGraphicsBeginImageContext(CGSizeMake(100.0f, 100.0f));
     
-//    UIBezierPath *balloon = [UIBezierPath balloonGlyph];
-    UIBezierPath *balloon = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(CGRectGetMidX(self.superview.bounds), CGRectGetMidY(self.superview.bounds), 100.0f, 100.0f)];
+    UIBezierPath *balloonPath = [UIBezierPath balloonGlyph];
+    [balloonPath applyTransform:CGAffineTransformMakeScale(1.7f, 1.7f)];
+    [balloonPath applyTransform:CGAffineTransformMakeTranslation(15.0f, 0)];
     [[UIColor blackColor] setStroke];
-    [balloon stroke];
+    [balloonPath stroke];
     [[UIColor colorWithFloatRed:255.0f green:181.0f blue:59.0f alpha:1.0f] setFill];
-    [balloon fill];
+    [balloonPath fill];
     
-    UIImage *bezierImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIImage *balloonImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
-    UIImageView *bezierImageView = [[UIImageView alloc] initWithImage:bezierImage];
-    
-    self.ideaCloud = [[ParticleSystemView alloc] initWithFrame:self.bounds];
-    self.ideaCloud.backgroundColor = [UIColor colorWithFloatRed:0 green:100.0f blue:0 alpha:0.6f];
-    [bezierImageView addSubview:self.ideaCloud];
-    
-//    [self addSubview:bezierImageView];
-    [self addSubview:self.ideaCloud];
+    UIImageView *balloonImageView = [[UIImageView alloc] initWithImage:balloonImage];
+    [self addSubview:balloonImageView];
 }
 
 - (id)initWithFrame:(CGRect)frame {

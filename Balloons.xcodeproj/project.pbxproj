@@ -12,7 +12,6 @@
 		21310025187714A700519753 /* AirTubeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21310024187714A700519753 /* AirTubeView.m */; };
 		21560D5C1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 21560D5B1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.m */; };
 		216B2134187B2F45002FD155 /* waterDrop.png in Resources */ = {isa = PBXBuildFile; fileRef = 216B2133187B2F45002FD155 /* waterDrop.png */; };
-		21794E98187B27B900746247 /* ParticleSystemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21794E97187B27B900746247 /* ParticleSystemView.m */; };
 		219BDF5B186C5C2F0059EC55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5A186C5C2F0059EC55 /* UIKit.framework */; };
 		219BDF5D186C5C2F0059EC55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5C186C5C2F0059EC55 /* Foundation.framework */; };
 		219BDF5F186C5C2F0059EC55 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5E186C5C2F0059EC55 /* CoreGraphics.framework */; };
@@ -31,6 +30,7 @@
 		21AF06511875D06100B1568A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AF06501875D06100B1568A /* QuartzCore.framework */; };
 		21AF06531875D06D00B1568A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AF06521875D06D00B1568A /* libz.dylib */; };
 		21AF06551875D0F000B1568A /* SparkInspector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AF06541875D0F000B1568A /* SparkInspector.framework */; };
+		21E53A19187C13510083B2D7 /* MasterBalloonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E53A18187C13510083B2D7 /* MasterBalloonView.m */; };
 		21EF7A831879FD8F0049FEB7 /* airPumpTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 21EF7A821879FD8F0049FEB7 /* airPumpTop.png */; };
 /* End PBXBuildFile section */
 
@@ -44,8 +44,6 @@
 		21560D5A1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+AirTubeGlyph.h"; sourceTree = "<group>"; };
 		21560D5B1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+AirTubeGlyph.m"; sourceTree = "<group>"; };
 		216B2133187B2F45002FD155 /* waterDrop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterDrop.png; sourceTree = "<group>"; };
-		21794E96187B27B900746247 /* ParticleSystemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticleSystemView.h; sourceTree = "<group>"; };
-		21794E97187B27B900746247 /* ParticleSystemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticleSystemView.m; sourceTree = "<group>"; };
 		219BDF57186C5C2F0059EC55 /* Balloons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Balloons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		219BDF5A186C5C2F0059EC55 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		219BDF5C186C5C2F0059EC55 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -71,6 +69,8 @@
 		21AF06501875D06100B1568A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		21AF06521875D06D00B1568A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		21AF06541875D0F000B1568A /* SparkInspector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SparkInspector.framework; path = "../../../../../Applications/Spark Inspector.app/Contents/Resources/Frameworks/SparkInspector.framework"; sourceTree = "<group>"; };
+		21E53A17187C13510083B2D7 /* MasterBalloonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterBalloonView.h; sourceTree = "<group>"; };
+		21E53A18187C13510083B2D7 /* MasterBalloonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterBalloonView.m; sourceTree = "<group>"; };
 		21EF7A821879FD8F0049FEB7 /* airPumpTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = airPumpTop.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,8 +147,8 @@
 				219BDF72186C5C2F0059EC55 /* MainStoryboard.storyboard */,
 				219BDF69186C5C2F0059EC55 /* AppDelegate.h */,
 				219BDF6A186C5C2F0059EC55 /* AppDelegate.m */,
-				21794E96187B27B900746247 /* ParticleSystemView.h */,
-				21794E97187B27B900746247 /* ParticleSystemView.m */,
+				21E53A17187C13510083B2D7 /* MasterBalloonView.h */,
+				21E53A18187C13510083B2D7 /* MasterBalloonView.m */,
 				219BDF83186C71810059EC55 /* BalloonView.h */,
 				219BDF84186C71810059EC55 /* BalloonView.m */,
 				21310023187714A700519753 /* AirTubeView.h */,
@@ -267,9 +267,9 @@
 				219BDF82186C699E0059EC55 /* AirPumpView.m in Sources */,
 				219BDF85186C71810059EC55 /* BalloonView.m in Sources */,
 				210DC09F187081360092E6B8 /* UIColor+ColorTools.m in Sources */,
-				21794E98187B27B900746247 /* ParticleSystemView.m in Sources */,
 				210DC0A2187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m in Sources */,
 				21310025187714A700519753 /* AirTubeView.m in Sources */,
+				21E53A19187C13510083B2D7 /* MasterBalloonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
