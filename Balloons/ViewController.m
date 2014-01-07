@@ -18,6 +18,9 @@ static CGFloat const balloonSize = 100.0f;
 
 @interface ViewController ()
 
+@property (nonatomic, strong) NSLayoutConstraint *balloonWidthConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *balloonHeightConstraint;
+
 @property (nonatomic) NSInteger round;
 @property (nonatomic) BOOL yTurn;
 @property (nonatomic) NSInteger changeNr;
@@ -66,19 +69,19 @@ static CGFloat const balloonSize = 100.0f;
     
     // Set up balloon
     
-    self.balloonView = [[BalloonView alloc] initWithFrame:CGRectMake(190.0f, 30.0f, balloonSize, balloonSize)];
+    self.balloonView = [[BalloonView alloc] init];
+    self.balloonView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.balloonView];
-    
-    // Calculation properties
-    
-    self.round = 0;
-    self.yTurn = YES;
-    self.changeNr = 1;
-    self.point = CGPointMake(balloonSize/2.0f, balloonSize/2.0f);
     
     // Layout
     
     NSDictionary *views = NSDictionaryOfVariableBindings(_balloonView, _airPumpOne, _airPumpTwo, _airPumpThree, _airTubeViewOne, _airTubeViewTwo, _airTubeViewThree);
+    
+    self.balloonWidthConstraint = [NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:100.0f];
+    self.balloonHeightConstraint = [NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:100.0f];
+    [self.view addConstraints:@[self.balloonWidthConstraint, self.balloonHeightConstraint]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-190.0-[_balloonView]" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-30.0-[_balloonView]" options:0 metrics:nil views:views]];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25.0-[_airTubeViewOne(210.0)]"
                                                                       options:0
@@ -133,6 +136,13 @@ static CGFloat const balloonSize = 100.0f;
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];
+    
+    // Calculation properties
+    
+    self.round = 0;
+    self.yTurn = YES;
+    self.changeNr = 1;
+    self.point = CGPointMake(50.0f, 50.0f);
 }
 
 #pragma mark - airPump delegate methods
@@ -140,7 +150,9 @@ static CGFloat const balloonSize = 100.0f;
 - (void)didTapOnAirPump:(UIView *)airPumpView {
     
     void (^completionBlock)(BOOL) = ^(BOOL finished) {
-        [self addIdeaToBalloon];
+        [UIView animateWithDuration:1.0f animations:^{
+            [self addIdeaToBalloon];
+        }];
     };
     
     [UIView animateWithDuration:5.0f animations:^{
@@ -210,13 +222,17 @@ static CGFloat const balloonSize = 100.0f;
         
         // Draw dot at calculated point
         [self drawDotAtPoint:point];
+        
+        // Recalculate balloonView size
+//        self.balloonWidthConstraint.constant = self.balloonWidthConstraint.constant + 10.0f;
+//        self.balloonHeightConstraint.constant = self.balloonHeightConstraint.constant + 10.0f;
     }
 }
 
 - (void)drawDotAtPoint:(CGPoint)point {
-    UIGraphicsBeginImageContext(CGSizeMake(balloonSize, balloonSize));
+    UIGraphicsBeginImageContext(self.balloonView.bounds.size);
     
-    UIBezierPath *dotPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(point.x, point.y, 8.0f, 8.0f)];
+    UIBezierPath *dotPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 100.0f, 100.0f)];
     [[UIColor blackColor] setFill];
     [dotPath fill];
     
@@ -224,6 +240,7 @@ static CGFloat const balloonSize = 100.0f;
     UIGraphicsEndImageContext();
     
     UIImageView *dotImageView = [[UIImageView alloc] initWithImage:dotImage];
+    dotImageView.frame = CGRectMake(point.x, point.y, 8.0f, 8.0f);
     [self.balloonView addSubview:dotImageView];
 }
 
