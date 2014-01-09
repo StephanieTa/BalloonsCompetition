@@ -65,7 +65,7 @@
 	CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
 	pathAnimation.calculationMode = kCAAnimationPaced;
 	pathAnimation.fillMode = kCAFillModeForwards;
-	pathAnimation.duration = 5.0;
+	pathAnimation.duration = 1.0;
     
     // Check from which airPump tap comes from to set up the path for the animation
     

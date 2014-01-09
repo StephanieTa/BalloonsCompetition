@@ -142,7 +142,7 @@ static CGFloat const balloonSize = 100.0f;
     self.round = 0;
     self.yTurn = YES;
     self.changeNr = 1;
-    self.point = CGPointMake(50.0f, 50.0f);
+    self.point = CGPointMake(balloonSize/2.0f, balloonSize/2.0f);
 }
 
 #pragma mark - airPump delegate methods
@@ -155,7 +155,7 @@ static CGFloat const balloonSize = 100.0f;
         }];
     };
     
-    [UIView animateWithDuration:5.0f animations:^{
+    [UIView animateWithDuration:1.0f animations:^{
         if ([airPumpView isEqual:self.airPumpOne]) {
             [self.airTubeViewOne animateIdeaAlongAirTubeAtPosition:@"Left" completion:completionBlock];
         }
@@ -230,18 +230,26 @@ static CGFloat const balloonSize = 100.0f;
 }
 
 - (void)drawDotAtPoint:(CGPoint)point {
-    UIGraphicsBeginImageContext(self.balloonView.bounds.size);
+//    UIGraphicsBeginImageContext(self.balloonView.bounds.size);
+//    UIBezierPath *dotPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 100.0f, 100.0f)];
+//    [[UIColor blackColor] setFill];
+//    [dotPath fill];
+//    UIImage *dotImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
     
-    UIBezierPath *dotPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 100.0f, 100.0f)];
-    [[UIColor blackColor] setFill];
-    [dotPath fill];
+    UIImageView *dotImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"waterDrop.png"]];
+    dotImageView.alpha = 0;
+    dotImageView.frame = CGRectMake(point.x + 5.0f, point.y + 10.0f, 4.0f, 4.0f);
     
-    UIImage *dotImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    UIImageView *dotImageView = [[UIImageView alloc] initWithImage:dotImage];
-    dotImageView.frame = CGRectMake(point.x, point.y, 8.0f, 8.0f);
+    [CATransaction begin];
+    [CATransaction setCompletionBlock:^{
+        [UIView animateWithDuration:0.5f animations:^{
+            dotImageView.alpha = 1.0f;
+            dotImageView.frame = CGRectMake(point.x, point.y, 8.0f, 8.0f);
+        }];
+    }];
     [self.balloonView addSubview:dotImageView];
+    [CATransaction commit];
 }
 
 @end
