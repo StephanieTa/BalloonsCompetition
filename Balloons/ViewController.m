@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "UIColor+ColorTools.h"
+#import "CloudView.h"
 
 
 static CGFloat const balloonSize = 100.0f;
@@ -18,6 +19,7 @@ static CGFloat const balloonSize = 100.0f;
 
 @interface ViewController ()
 
+@property (nonatomic, strong) CloudView *cloudView;
 @property (nonatomic, strong) NSLayoutConstraint *balloonWidthConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *balloonHeightConstraint;
 
@@ -38,6 +40,12 @@ static CGFloat const balloonSize = 100.0f;
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor colorWithFloatRed:250.0f green:247.0f blue:100.0f alpha:1.0f];
+    
+    // Set up cloud view
+    
+    self.cloudView = [[CloudView alloc] init];
+    [self.view addSubview:self.cloudView];
+    [self.cloudView animateCloudView];
     
     // Set up air tubes
     
@@ -75,7 +83,7 @@ static CGFloat const balloonSize = 100.0f;
     
     // Layout
     
-    NSDictionary *views = NSDictionaryOfVariableBindings(_balloonView, _airPumpOne, _airPumpTwo, _airPumpThree, _airTubeViewOne, _airTubeViewTwo, _airTubeViewThree);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_balloonView, _airPumpOne, _airPumpTwo, _airPumpThree, _airTubeViewOne, _airTubeViewTwo, _airTubeViewThree, _cloudView);
     
     self.balloonWidthConstraint = [NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:100.0f];
     self.balloonHeightConstraint = [NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:100.0f];
@@ -136,6 +144,10 @@ static CGFloat const balloonSize = 100.0f;
                                                                       options:0
                                                                       metrics:nil
                                                                         views:views]];
+    
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_cloudView]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_cloudView(140.0)]" options:0 metrics:nil views:views]];
     
     // Calculation properties
     

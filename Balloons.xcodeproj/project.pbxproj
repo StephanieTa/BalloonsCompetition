@@ -12,6 +12,9 @@
 		21310025187714A700519753 /* AirTubeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21310024187714A700519753 /* AirTubeView.m */; };
 		21560D5C1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 21560D5B1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.m */; };
 		216B2134187B2F45002FD155 /* waterDrop.png in Resources */ = {isa = PBXBuildFile; fileRef = 216B2133187B2F45002FD155 /* waterDrop.png */; };
+		21827197187F5DED004F3C34 /* cloudBig.png in Resources */ = {isa = PBXBuildFile; fileRef = 21827195187F5DED004F3C34 /* cloudBig.png */; };
+		21827198187F5DED004F3C34 /* cloudSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 21827196187F5DED004F3C34 /* cloudSmall.png */; };
+		2182719B187F6315004F3C34 /* CloudView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2182719A187F6315004F3C34 /* CloudView.m */; };
 		219BDF5B186C5C2F0059EC55 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5A186C5C2F0059EC55 /* UIKit.framework */; };
 		219BDF5D186C5C2F0059EC55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5C186C5C2F0059EC55 /* Foundation.framework */; };
 		219BDF5F186C5C2F0059EC55 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 219BDF5E186C5C2F0059EC55 /* CoreGraphics.framework */; };
@@ -44,6 +47,10 @@
 		21560D5A1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+AirTubeGlyph.h"; sourceTree = "<group>"; };
 		21560D5B1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+AirTubeGlyph.m"; sourceTree = "<group>"; };
 		216B2133187B2F45002FD155 /* waterDrop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waterDrop.png; sourceTree = "<group>"; };
+		21827195187F5DED004F3C34 /* cloudBig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudBig.png; sourceTree = "<group>"; };
+		21827196187F5DED004F3C34 /* cloudSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudSmall.png; sourceTree = "<group>"; };
+		21827199187F6315004F3C34 /* CloudView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudView.h; sourceTree = "<group>"; };
+		2182719A187F6315004F3C34 /* CloudView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudView.m; sourceTree = "<group>"; };
 		219BDF57186C5C2F0059EC55 /* Balloons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Balloons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		219BDF5A186C5C2F0059EC55 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		219BDF5C186C5C2F0059EC55 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -147,6 +154,8 @@
 				219BDF72186C5C2F0059EC55 /* MainStoryboard.storyboard */,
 				219BDF69186C5C2F0059EC55 /* AppDelegate.h */,
 				219BDF6A186C5C2F0059EC55 /* AppDelegate.m */,
+				21827199187F6315004F3C34 /* CloudView.h */,
+				2182719A187F6315004F3C34 /* CloudView.m */,
 				21E53A17187C13510083B2D7 /* MasterBalloonView.h */,
 				21E53A18187C13510083B2D7 /* MasterBalloonView.m */,
 				219BDF83186C71810059EC55 /* BalloonView.h */,
@@ -182,6 +191,8 @@
 		219BDF8A186C7F6F0059EC55 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				21827195187F5DED004F3C34 /* cloudBig.png */,
+				21827196187F5DED004F3C34 /* cloudSmall.png */,
 				216B2133187B2F45002FD155 /* waterDrop.png */,
 				21EF7A821879FD8F0049FEB7 /* airPumpTop.png */,
 				219BDF8F186C922C0059EC55 /* Balloon.png */,
@@ -245,8 +256,10 @@
 				216B2134187B2F45002FD155 /* waterDrop.png in Resources */,
 				219BDF6D186C5C2F0059EC55 /* Default.png in Resources */,
 				219BDF6F186C5C2F0059EC55 /* Default@2x.png in Resources */,
+				21827197187F5DED004F3C34 /* cloudBig.png in Resources */,
 				219BDF71186C5C2F0059EC55 /* Default-568h@2x.png in Resources */,
 				219BDF74186C5C2F0059EC55 /* MainStoryboard.storyboard in Resources */,
+				21827198187F5DED004F3C34 /* cloudSmall.png in Resources */,
 				219BDF8D186C7F6F0059EC55 /* luftpumpe.png in Resources */,
 				219BDF90186C922C0059EC55 /* Balloon.png in Resources */,
 				21EF7A831879FD8F0049FEB7 /* airPumpTop.png in Resources */,
@@ -269,6 +282,7 @@
 				210DC09F187081360092E6B8 /* UIColor+ColorTools.m in Sources */,
 				210DC0A2187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m in Sources */,
 				21310025187714A700519753 /* AirTubeView.m in Sources */,
+				2182719B187F6315004F3C34 /* CloudView.m in Sources */,
 				21E53A19187C13510083B2D7 /* MasterBalloonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
