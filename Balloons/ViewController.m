@@ -28,8 +28,8 @@ static CGFloat const balloonSize = 100.0f;
 @property (nonatomic) NSInteger changeNr;
 @property (nonatomic) CGPoint point;
 
-- (void)addIdeaToBalloon;
-- (void)drawDotAtPoint:(CGPoint)point;
+- (void)addIdeaToBalloonWithImage:(UIImage *)image;
+- (void)drawDotAtPoint:(CGPoint)point withImage:(UIImage *)image;
 
 @end
 
@@ -161,32 +161,44 @@ static CGFloat const balloonSize = 100.0f;
 
 - (void)didTapOnAirPump:(UIView *)airPumpView {
     
-    void (^completionBlock)(BOOL) = ^(BOOL finished) {
+    void (^completionBlockA)(BOOL) = ^(BOOL finished) {
         [UIView animateWithDuration:1.0f animations:^{
-            [self addIdeaToBalloon];
+            [self addIdeaToBalloonWithImage:[UIImage imageNamed:@"blueDot.png"]];
         }];
     };
     
-    [UIView animateWithDuration:1.0f animations:^{
+    void (^completionBlockB)(BOOL) = ^(BOOL finished) {
+        [UIView animateWithDuration:1.0f animations:^{
+            [self addIdeaToBalloonWithImage:[UIImage imageNamed:@"redDot.png"]];
+        }];
+    };
+    
+    void (^completionBlockC)(BOOL) = ^(BOOL finished) {
+        [UIView animateWithDuration:1.0f animations:^{
+            [self addIdeaToBalloonWithImage:[UIImage imageNamed:@"greenDot.png"]];
+        }];
+    };
+    
+    [UIView animateWithDuration:5.0f animations:^{
         if ([airPumpView isEqual:self.airPumpOne]) {
-            [self.airTubeViewOne animateIdeaAlongAirTubeAtPosition:@"Left" completion:completionBlock];
+            [self.airTubeViewOne animateIdeaAlongAirTubeAtPosition:@"Left" completion:completionBlockA];
         }
         else if ([airPumpView isEqual:self.airPumpTwo]) {
-            [self.airTubeViewTwo animateIdeaAlongAirTubeAtPosition:@"Center" completion:completionBlock];
+            [self.airTubeViewTwo animateIdeaAlongAirTubeAtPosition:@"Center" completion:completionBlockB];
         }
         else if ([airPumpView isEqual:self.airPumpThree]) {
-            [self.airTubeViewThree animateIdeaAlongAirTubeAtPosition:@"Right" completion:completionBlock];
+            [self.airTubeViewThree animateIdeaAlongAirTubeAtPosition:@"Right" completion:completionBlockC];
         }
     }];
 }
 
-- (void)addIdeaToBalloon {
+- (void)addIdeaToBalloonWithImage:(UIImage *)image {
     CGPoint point = self.point;
     
     // Calculate point at where to add new idea
     
     if (self.round == 0) {
-        [self drawDotAtPoint:point];
+        [self drawDotAtPoint:point withImage:image];
         self.round++;
     }
     else {
@@ -233,7 +245,7 @@ static CGFloat const balloonSize = 100.0f;
         self.point = point;
         
         // Draw dot at calculated point
-        [self drawDotAtPoint:point];
+        [self drawDotAtPoint:point withImage:image];
         
         // Recalculate balloonView size
 //        self.balloonWidthConstraint.constant = self.balloonWidthConstraint.constant + 10.0f;
@@ -241,15 +253,8 @@ static CGFloat const balloonSize = 100.0f;
     }
 }
 
-- (void)drawDotAtPoint:(CGPoint)point {
-//    UIGraphicsBeginImageContext(self.balloonView.bounds.size);
-//    UIBezierPath *dotPath = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 100.0f, 100.0f)];
-//    [[UIColor blackColor] setFill];
-//    [dotPath fill];
-//    UIImage *dotImage = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
-    
-    UIImageView *dotImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"waterDrop.png"]];
+- (void)drawDotAtPoint:(CGPoint)point withImage:(UIImage *)image {
+    UIImageView *dotImageView = [[UIImageView alloc] initWithImage:image];
     dotImageView.alpha = 0;
     dotImageView.frame = CGRectMake(point.x + 5.0f, point.y + 10.0f, 4.0f, 4.0f);
     

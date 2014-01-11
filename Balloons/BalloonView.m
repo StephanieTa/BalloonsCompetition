@@ -31,7 +31,7 @@
     [balloonPath applyTransform:CGAffineTransformMakeTranslation(15.0f, 0)];
     [[UIColor blackColor] setStroke];
     [balloonPath stroke];
-    [[UIColor colorWithFloatRed:255.0f green:181.0f blue:59.0f alpha:1.0f] setFill];
+    [[UIColor whiteColor] setFill];
     [balloonPath fill];
     
     UIImage *balloonImage = UIGraphicsGetImageFromCurrentImageContext();
@@ -39,6 +39,14 @@
     
     UIImageView *balloonImageView = [[UIImageView alloc] initWithImage:balloonImage];
     [self addSubview:balloonImageView];
+    
+//    [UIView animateWithDuration:3.0f delay:3.0f options:0 animations:^{
+//        CGAffineTransform transform = CGAffineTransformMakeRotation(0.5f);
+//        balloonImageView.transform = transform;
+//    } completion:^(BOOL finished) {
+//        CGAffineTransform transform = CGAffineTransformMakeRotation(-10.0f);
+//        balloonImageView.transform = transform;
+//    }];
 }
 
 - (id)initWithFrame:(CGRect)frame {
