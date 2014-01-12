@@ -22,12 +22,12 @@
     // Set up air pump top
     
     self.topView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"airPumpTop.png"]];
-    self.topView.frame = CGRectMake(0, 17.0f, 40.0f, 20.0f);
+    self.topView.frame = CGRectMake(5.0f, 17.0f, 30.0f, 20.0f);
     [self addSubview:self.topView];
     
     // Set up air pump bottom
     
-    self.bottomView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"luftpumpe.png"]];
+    self.bottomView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"airPumpBottomRed.png"]];
     self.bottomView.frame = CGRectMake(0, 35.0f, 40.0f, 50.0f);
     [self addSubview:self.bottomView];
 
@@ -54,12 +54,12 @@
 - (void)onAirPumpTouchUpInside:(id)sender {
     [UIView animateWithDuration:0.5f
                      animations:^{
-                         self.topView.frame = CGRectMake(0, 30.0f, 40.0f, 20.0f);
+                         self.topView.frame = CGRectMake(5.0f, 30.0f, 30.0f, 20.0f);
                      }
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:0.5f
                                           animations:^{
-                                              self.topView.frame = CGRectMake(0, 17.0f, 40.0f, 20.0f);
+                                              self.topView.frame = CGRectMake(5.0f, 17.0f, 30.0f, 20.0f);
                                           }
                           ];
                              [self.delegate didTapOnAirPump:self];
