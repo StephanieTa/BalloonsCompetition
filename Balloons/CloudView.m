@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIImageView *cloud1;
 @property (nonatomic, strong) UIImageView *cloud2;
+@property (nonatomic, strong) UIImageView *cloud3;
 
 - (void)initCloudView;
 
@@ -35,6 +36,10 @@
     self.cloud2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloudSmall.png"]];
     self.cloud2.frame = CGRectMake(-80.0f, 60.0f, 80.0f, 40.0f);
     [self addSubview:self.cloud2];
+    
+    self.cloud3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloudBig.png"]];
+    self.cloud3.frame = CGRectMake(480.0f, 50.0f, 70.0f, 30.0f);
+    [self addSubview:self.cloud3];
     
     // Layout
     
@@ -64,6 +69,13 @@
                              options:(UIViewAnimationOptionRepeat | UIViewAnimationOptionCurveEaseIn)
                           animations:^{
                               self.cloud2.transform = CGAffineTransformMakeTranslation(560.0f, 0);
+                          } completion:NULL];
+    
+    [UIImageView animateWithDuration:180.0f
+                               delay:7.0f
+                             options:(UIViewAnimationOptionRepeat | UIViewAnimationOptionCurveEaseIn)
+                          animations:^{
+                              self.cloud3.transform = CGAffineTransformMakeTranslation(-580.0f, 0);
                           } completion:NULL];
 }
 
