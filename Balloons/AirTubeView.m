@@ -77,19 +77,19 @@
     if ([position isEqualToString:@"Left"]) {
         tubePath = [UIBezierPath airTubeGlyphLeft];
         imageContext = CGSizeMake(210.0f, 160.0f);
-        circleRect = CGRectMake(103.0f, 77.0f, 4.0f, 4.0f);
+        circleRect = CGRectMake(103.0f, 77.0f, 6.0f, 6.0f);
         circleViewFrame = CGRectMake(0, 0, 210.0f, 160.0f);
     }
     else if ([position isEqualToString:@"Center"]) {
         tubePath = [UIBezierPath airTubeGlyphCenter];
         imageContext = CGSizeMake(120.0f, 165.0f);
-        circleRect = CGRectMake(57.0f, 79.5f, 4.0f, 4.0f);
+        circleRect = CGRectMake(57.0f, 79.5f, 6.0f, 6.0f);
         circleViewFrame = CGRectMake(0, 0, 120.0f, 165.0);
     }
     else if ([position isEqualToString:@"Right"]) {
         tubePath = [UIBezierPath airTubeGlyphRight];
         imageContext = CGSizeMake(220.0f, 160.0f);
-        circleRect = CGRectMake(107.0f, 77.5f, 4.0f, 4.0f);
+        circleRect = CGRectMake(107.0f, 77.5f, 6.0f, 6.0f);
         circleViewFrame = CGRectMake(0, 0, 220.0f, 160.0f);
     }
 	pathAnimation.path = tubePath.CGPath;
@@ -100,6 +100,7 @@
 	CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextAddEllipseInRect(context, circleRect);
 	CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);
+    CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
 	CGContextDrawPath(context, kCGPathFillStroke);
 	UIImage *circle = UIGraphicsGetImageFromCurrentImageContext();
 	UIGraphicsEndImageContext();
@@ -115,7 +116,7 @@
         [circleView removeFromSuperview];
         completionBlock(YES);
     }];
-	[circleView.layer addAnimation:pathAnimation forKey:@"moveTheSquare"];
+	[circleView.layer addAnimation:pathAnimation forKey:@"moveAlongPath"];
     [CATransaction commit];
 }
 

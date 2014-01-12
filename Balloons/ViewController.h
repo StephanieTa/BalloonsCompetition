@@ -18,8 +18,8 @@
 @property (nonatomic, strong) AirPumpView *airPumpTwo;
 @property (nonatomic, strong) AirPumpView *airPumpThree;
 @property (nonatomic, strong) BalloonView *balloonView;
-@property (nonatomic, strong) AirTubeView *airTubeViewOne;
-@property (nonatomic, strong) AirTubeView *airTubeViewTwo;
-@property (nonatomic, strong) AirTubeView *airTubeViewThree;
+@property (nonatomic, strong) AirTubeView *airTubeLeft;
+@property (nonatomic, strong) AirTubeView *airTubeCenter;
+@property (nonatomic, strong) AirTubeView *airTubeRight;
 
 @end
