@@ -17,6 +17,7 @@
 		21317FF81882D369006E0E75 /* yellowBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 21317FF71882D369006E0E75 /* yellowBG.png */; };
 		21317FFA1882E2A0006E0E75 /* greenBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 21317FF91882E2A0006E0E75 /* greenBG.png */; };
 		213180001882EF0C006E0E75 /* airPumpBottomRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 21317FFF1882EF0C006E0E75 /* airPumpBottomRed.png */; };
+		213180021882F563006E0E75 /* Balloon.png in Resources */ = {isa = PBXBuildFile; fileRef = 213180011882F563006E0E75 /* Balloon.png */; };
 		21560D5C1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.m in Sources */ = {isa = PBXBuildFile; fileRef = 21560D5B1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.m */; };
 		21827197187F5DED004F3C34 /* cloudBig.png in Resources */ = {isa = PBXBuildFile; fileRef = 21827195187F5DED004F3C34 /* cloudBig.png */; };
 		21827198187F5DED004F3C34 /* cloudSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 21827196187F5DED004F3C34 /* cloudSmall.png */; };
@@ -56,6 +57,7 @@
 		21317FF71882D369006E0E75 /* yellowBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowBG.png; sourceTree = "<group>"; };
 		21317FF91882E2A0006E0E75 /* greenBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenBG.png; sourceTree = "<group>"; };
 		21317FFF1882EF0C006E0E75 /* airPumpBottomRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = airPumpBottomRed.png; sourceTree = "<group>"; };
+		213180011882F563006E0E75 /* Balloon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Balloon.png; sourceTree = "<group>"; };
 		21560D5A1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBezierPath+AirTubeGlyph.h"; sourceTree = "<group>"; };
 		21560D5B1878C45100E543D5 /* UIBezierPath+AirTubeGlyph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBezierPath+AirTubeGlyph.m"; sourceTree = "<group>"; };
 		21827195187F5DED004F3C34 /* cloudBig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloudBig.png; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		219BDF8A186C7F6F0059EC55 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				213180011882F563006E0E75 /* Balloon.png */,
 				21317FFF1882EF0C006E0E75 /* airPumpBottomRed.png */,
 				2112CF8E1881C6F000519376 /* cloudBG.jpg */,
 				21827195187F5DED004F3C34 /* cloudBig.png */,
@@ -277,6 +280,7 @@
 				21827197187F5DED004F3C34 /* cloudBig.png in Resources */,
 				219BDF71186C5C2F0059EC55 /* Default-568h@2x.png in Resources */,
 				219BDF74186C5C2F0059EC55 /* MainStoryboard.storyboard in Resources */,
+				213180021882F563006E0E75 /* Balloon.png in Resources */,
 				21827198187F5DED004F3C34 /* cloudSmall.png in Resources */,
 				219BDF8D186C7F6F0059EC55 /* luftpumpe.png in Resources */,
 				2112CF891881BE4C00519376 /* blueDot.png in Resources */,
