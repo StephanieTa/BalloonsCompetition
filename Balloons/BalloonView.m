@@ -43,14 +43,6 @@
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[balloonImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(balloonImageView)]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[balloonImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(balloonImageView)]];
-    
-//    [UIView animateWithDuration:3.0f delay:3.0f options:0 animations:^{
-//        CGAffineTransform transform = CGAffineTransformMakeRotation(0.5f);
-//        balloonImageView.transform = transform;
-//    } completion:^(BOOL finished) {
-//        CGAffineTransform transform = CGAffineTransformMakeRotation(-10.0f);
-//        balloonImageView.transform = transform;
-//    }];
 }
 
 - (id)initWithFrame:(CGRect)frame {
