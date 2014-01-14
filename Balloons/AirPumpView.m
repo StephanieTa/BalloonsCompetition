@@ -23,15 +23,13 @@
     
     self.airTubeView = [[AirTubeView alloc] init];
     self.airTubeView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.airTubeView.contentMode = UIViewContentModeScaleAspectFill;
     [self.airTubeView drawAirTube];
     [self addSubview:self.airTubeView];
     
     // Set up air pump top
     
     self.topView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"airPumpTop.png"]];
-    self.topView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.topView.frame = CGRectMake(5.0f, 17.0f, 30.0f, 20.0f);
+    self.topView.frame = CGRectMake(45.0f, 115.0f, 30.0f, 20.0f);
     [self addSubview:self.topView];
     
     // Set up air pump bottom
@@ -42,9 +40,6 @@
 
     // Layout
     NSDictionary *views = NSDictionaryOfVariableBindings(_topView, _bottomView, _airTubeView);
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-45.0-[_topView(30.0)]" options:0 metrics:nil views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-115.0-[_topView(20.0)]" options:0 metrics:nil views:views]];
     
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-40.0-[_bottomView(40.0)]" options:0 metrics:nil views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_bottomView(50.0)]-20.0-|" options:0 metrics:nil views:views]];
@@ -75,12 +70,12 @@
 - (void)onAirPumpTouchUpInside:(id)sender {
     [UIView animateWithDuration:0.5f
                      animations:^{
-                         self.topView.frame = CGRectMake(5.0f, 30.0f, 30.0f, 20.0f);
+                         self.topView.frame = CGRectMake(45.0f, 125.0f, 30.0f, 20.0f);
                      }
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:0.5f
                                           animations:^{
-                                              self.topView.frame = CGRectMake(5.0f, 17.0f, 30.0f, 20.0f);
+                                              self.topView.frame = CGRectMake(45.0f, 115.0f, 30.0f, 20.0f);
                                           }
                           ];
                          [self.delegate didTapOnAirPump:self];
