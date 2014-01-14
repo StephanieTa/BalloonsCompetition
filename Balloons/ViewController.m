@@ -21,9 +21,15 @@ static CGFloat const dotSize = 10.0f;
 @interface ViewController ()
 
 @property (nonatomic, strong) CloudView *cloudView;
-@property (nonatomic, strong) UIView *dotView;
-@property (nonatomic, strong) NSLayoutConstraint *balloonWidthConstraint;
-@property (nonatomic, strong) NSLayoutConstraint *balloonHeightConstraint;
+@property (nonatomic, strong) UIView *dotViewOne;
+@property (nonatomic, strong) UIView *dotViewTwo;
+@property (nonatomic, strong) UIView *dotViewThree;
+@property (nonatomic, strong) NSLayoutConstraint *balloonOneWidthConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *balloonOneHeightConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *balloonTwoWidthConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *balloonTwoHeightConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *balloonThreeWidthConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *balloonThreeHeightConstraint;
 
 @property (nonatomic) NSInteger round;
 @property (nonatomic) BOOL yTurn;
@@ -47,49 +53,51 @@ static CGFloat const dotSize = 10.0f;
     [self.view addSubview:self.cloudView];
     [self.cloudView animateCloudView];
     
-    // Set up master balloon
+    // Set up balloons
     
-    self.masterBalloonView = [[MasterBalloonView alloc] init];
-    self.masterBalloonView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.masterBalloonView setNeedsLayout];
-    [self.masterBalloonView layoutIfNeeded];
-    [self.cloudView addSubview:self.masterBalloonView];
+    self.balloonViewOne = [[BalloonView alloc] init];
+    self.balloonViewOne.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.balloonViewOne setNeedsLayout];
+    [self.balloonViewOne layoutIfNeeded];
+    [self.cloudView addSubview:self.balloonViewOne];
     
-//    // Set up balloon
-//    
-//    self.balloonView = [[BalloonView alloc] init];
-//    self.balloonView.translatesAutoresizingMaskIntoConstraints = NO;
-//    [self.balloonView setNeedsLayout];
-//    [self.balloonView layoutIfNeeded];
-//    [self.cloudView addSubview:self.balloonView];
+    self.balloonViewTwo = [[BalloonView alloc] init];
+    self.balloonViewTwo.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.balloonViewTwo setNeedsLayout];
+    [self.balloonViewTwo layoutIfNeeded];
+    [self.cloudView addSubview:self.balloonViewTwo];
+    
+    self.balloonViewThree = [[BalloonView alloc] init];
+    self.balloonViewThree.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.balloonViewThree setNeedsLayout];
+    [self.balloonViewThree layoutIfNeeded];
+    [self.cloudView addSubview:self.balloonViewThree];
     
     // Set up dot view
     
-    self.dotView = [[UIView alloc] init];
-    self.dotView.translatesAutoresizingMaskIntoConstraints = NO;
-    self.dotView.backgroundColor = nil;
-    self.dotView.opaque = NO;
-    [self.cloudView addSubview:self.dotView];
+    self.dotViewOne = [[UIView alloc] init];
+    self.dotViewOne.translatesAutoresizingMaskIntoConstraints = NO;
+    self.dotViewOne.backgroundColor = nil;
+    self.dotViewOne.opaque = NO;
+    [self.cloudView addSubview:self.dotViewOne];
+    
+    self.dotViewTwo = [[UIView alloc] init];
+    self.dotViewTwo.translatesAutoresizingMaskIntoConstraints = NO;
+    self.dotViewTwo.backgroundColor = nil;
+    self.dotViewTwo.opaque = NO;
+    [self.cloudView addSubview:self.dotViewTwo];
+    
+    self.dotViewThree = [[UIView alloc] init];
+    self.dotViewThree.translatesAutoresizingMaskIntoConstraints = NO;
+    self.dotViewThree.backgroundColor = nil;
+    self.dotViewThree.opaque = NO;
+    [self.cloudView addSubview:self.dotViewThree];
     
     // Set up ground view
     
     UIImageView *groundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"greenBG.png"]];
     groundView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:groundView];
-    
-    // Set up air tubes
-    
-    self.airTubeLeft = [[AirTubeView alloc] init];
-    [self.airTubeLeft drawAirTubeAtPosition:@"Left"];
-    [self.view addSubview:self.airTubeLeft];
-    
-    self.airTubeCenter = [[AirTubeView alloc] init];
-    [self.airTubeCenter drawAirTubeAtPosition:@"Center"];
-    [self.view addSubview:self.airTubeCenter];
-    
-    self.airTubeRight = [[AirTubeView alloc] init];
-    [self.airTubeRight drawAirTubeAtPosition:@"Right"];
-    [self.view addSubview:self.airTubeRight];
+//    [self.view addSubview:groundView];
     
     // Set up air pumps
     
@@ -107,51 +115,53 @@ static CGFloat const dotSize = 10.0f;
     
     // Layout views
     
-//    NSDictionary *views = NSDictionaryOfVariableBindings(_cloudView, groundView, _airTubeLeft, _airTubeCenter, _airTubeRight, _airPumpOne, _airPumpTwo, _airPumpThree, _balloonView);
-    
-    NSDictionary *views = NSDictionaryOfVariableBindings(_cloudView, groundView, _airTubeLeft, _airTubeCenter, _airTubeRight, _airPumpOne, _airPumpTwo, _airPumpThree, _masterBalloonView);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_cloudView, groundView, _airPumpOne, _airPumpTwo, _airPumpThree, _balloonViewOne, _balloonViewTwo, _balloonViewThree);
     
     // Background
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_cloudView]|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_cloudView(160.0)]" options:0 metrics:nil views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[groundView]|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[groundView(340.0)]|" options:0 metrics:nil views:views]];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[groundView]|" options:0 metrics:nil views:views]];
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[groundView(340.0)]|" options:0 metrics:nil views:views]];
     
-//    // Balloons
-//    self.balloonWidthConstraint = [NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:10.0f];
-//    self.balloonHeightConstraint = [NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:10.0f];
-//    [self.cloudView addConstraints:@[self.balloonWidthConstraint, self.balloonHeightConstraint]];
-//    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0]];
-//    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0]];
+    // Balloons
+    self.balloonTwoWidthConstraint = [NSLayoutConstraint constraintWithItem:self.balloonViewOne attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:10.0f];
+    self.balloonTwoHeightConstraint = [NSLayoutConstraint constraintWithItem:self.balloonViewOne attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:10.0f];
+    [self.cloudView addConstraints:@[self.balloonTwoWidthConstraint, self.balloonTwoHeightConstraint]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonViewOne attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonViewOne attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0]];
     
-    // Masterballoon
-    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.masterBalloonView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0]];
-    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.masterBalloonView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0]];
+    self.balloonOneWidthConstraint = [NSLayoutConstraint constraintWithItem:self.balloonViewTwo attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:10.0f];
+    self.balloonOneHeightConstraint = [NSLayoutConstraint constraintWithItem:self.balloonViewTwo attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:10.0f];
+    [self.cloudView addConstraints:@[self.balloonOneWidthConstraint, self.balloonOneHeightConstraint]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonViewTwo attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:-100.0f]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonViewTwo attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0]];
     
-    self.balloonWidthConstraint = self.masterBalloonView.secondChildBalloonWidthConstraint;
-    self.balloonHeightConstraint = self.masterBalloonView.secondChildBalloonHeightConstraint;
-    [self.cloudView addConstraints:@[self.balloonWidthConstraint, self.balloonHeightConstraint]];
+    self.balloonThreeWidthConstraint = [NSLayoutConstraint constraintWithItem:self.balloonViewThree attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:10.0f];
+    self.balloonThreeHeightConstraint = [NSLayoutConstraint constraintWithItem:self.balloonViewThree attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:10.0f];
+    [self.cloudView addConstraints:@[self.balloonThreeWidthConstraint, self.balloonThreeHeightConstraint]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonViewThree attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:100.0f]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.balloonViewThree attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0]];
     
     // Dot view
-    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:100.0f]];
-    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:100.0f]];
-    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0]];
-    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotView attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotViewOne attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:100.0f]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotViewOne attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:100.0f]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotViewOne attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:-100.0f]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotViewOne attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0]];
     
-    // AirTubes
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-25.0-[_airTubeLeft(210.0)]" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-140.0-[_airTubeLeft(160.0)]" options:0 metrics:nil views:views]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotViewTwo attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:100.0f]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotViewTwo attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:100.0f]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotViewTwo attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotViewTwo attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-185.0-[_airTubeCenter(125.0)]" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-140.0-[_airTubeCenter(165.0)]" options:0 metrics:nil views:views]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotViewThree attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:100.0f]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotViewThree attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:100.0f]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotViewThree attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:100.0f]];
+    [self.cloudView addConstraint:[NSLayoutConstraint constraintWithItem:self.dotViewThree attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.cloudView attribute:NSLayoutAttributeCenterY multiplier:1.0f constant:0]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-245.0-[_airTubeRight(220.0)]" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-140.0-[_airTubeRight(160.0)]" options:0 metrics:nil views:views]];
-    
-    // AirPumps
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-50.0-[_airPumpOne(40.0)]-120.0-[_airPumpTwo(_airPumpOne)]-150.0-[_airPumpThree(==_airPumpOne)]" options:(NSLayoutFormatAlignAllBottom | NSLayoutFormatAlignAllTop) metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airPumpOne(100.0)]|" options:0 metrics:nil views:views]];
+    // AirPumps with airtube
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_airPumpOne(160.0)][_airPumpTwo(==_airPumpOne)][_airPumpThree(==_airPumpOne)]" options:(NSLayoutFormatAlignAllBottom | NSLayoutFormatAlignAllTop) metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airPumpOne(200.0)]|" options:0 metrics:nil views:views]];
     
     // Calculation properties
     
@@ -185,13 +195,13 @@ static CGFloat const dotSize = 10.0f;
     
     [UIView animateWithDuration:5.0f animations:^{
         if ([airPumpView isEqual:self.airPumpOne]) {
-            [self.airTubeLeft animateIdeaAlongAirTubeAtPosition:@"Left" completion:completionBlockA];
+            [self.airPumpOne.airTubeView animateIdeaAlongAirTubeAtPosition:@"Left" completion:completionBlockA];
         }
         else if ([airPumpView isEqual:self.airPumpTwo]) {
-            [self.airTubeCenter animateIdeaAlongAirTubeAtPosition:@"Center" completion:completionBlockB];
+            [self.airPumpTwo.airTubeView animateIdeaAlongAirTubeAtPosition:@"Center" completion:completionBlockB];
         }
         else if ([airPumpView isEqual:self.airPumpThree]) {
-            [self.airTubeRight animateIdeaAlongAirTubeAtPosition:@"Right" completion:completionBlockC];
+            [self.airPumpThree.airTubeView animateIdeaAlongAirTubeAtPosition:@"Right" completion:completionBlockC];
         }
     }];
 }
@@ -260,20 +270,58 @@ static CGFloat const dotSize = 10.0f;
     dotImageView.alpha = 0;
     dotImageView.frame = CGRectMake(point.x + 5.0f, point.y + 10.0f, 8.0f, 8.0f);
     
-    [CATransaction begin];
-    [CATransaction setCompletionBlock:^{
-        [UIView animateWithDuration:0.5f animations:^{
-            dotImageView.alpha = 1.0f;
-            dotImageView.frame = CGRectMake(point.x, point.y, 8.0f, 8.0f);
-            
-            // Recalculate balloonView size
-            CGFloat widthCount = ceilf(sqrtf(self.dotView.subviews.count));
-            self.balloonWidthConstraint.constant = CGRectGetWidth(dotImageView.bounds) * widthCount * 2.0f;
-            self.balloonHeightConstraint.constant = CGRectGetWidth(dotImageView.bounds) * widthCount * 2.0f;
+    if ([image isEqual:[UIImage imageNamed:@"blueDot.png"]]) {
+        [CATransaction begin];
+        [CATransaction setCompletionBlock:^{
+            [UIView animateWithDuration:0.5f animations:^{
+                dotImageView.alpha = 1.0f;
+                dotImageView.frame = CGRectMake(point.x, point.y, 8.0f, 8.0f);
+                
+                // Recalculate balloonView size
+                CGFloat widthCount = ceilf(sqrtf(self.dotViewOne.subviews.count));
+                self.balloonOneWidthConstraint.constant = CGRectGetWidth(dotImageView.bounds) * widthCount * 2.0f;
+                self.balloonOneHeightConstraint.constant = CGRectGetWidth(dotImageView.bounds) * widthCount * 2.0f;
+            }];
         }];
-    }];
-    [self.dotView addSubview:dotImageView];
-    [CATransaction commit];
+        
+        [self.dotViewOne addSubview:dotImageView];
+        [CATransaction commit];
+    }
+    else if ([image isEqual:[UIImage imageNamed:@"redDot.png"]]) {
+        [CATransaction begin];
+        [CATransaction setCompletionBlock:^{
+            [UIView animateWithDuration:0.5f animations:^{
+                dotImageView.alpha = 1.0f;
+                dotImageView.frame = CGRectMake(point.x, point.y, 8.0f, 8.0f);
+                
+                // Recalculate balloonView size
+                CGFloat widthCount = ceilf(sqrtf(self.dotViewTwo.subviews.count));
+                self.balloonTwoWidthConstraint.constant = CGRectGetWidth(dotImageView.bounds) * widthCount * 2.0f;
+                self.balloonTwoHeightConstraint.constant = CGRectGetWidth(dotImageView.bounds) * widthCount * 2.0f;
+            }];
+        }];
+        
+        [self.dotViewTwo addSubview:dotImageView];
+        [CATransaction commit];
+    }
+    else if ([image isEqual:[UIImage imageNamed:@"greenDot.png"]]) {
+        [CATransaction begin];
+        [CATransaction setCompletionBlock:^{
+            [UIView animateWithDuration:0.5f animations:^{
+                dotImageView.alpha = 1.0f;
+                dotImageView.frame = CGRectMake(point.x, point.y, 8.0f, 8.0f);
+                
+                // Recalculate balloonView size
+                CGFloat widthCount = ceilf(sqrtf(self.dotViewThree.subviews.count));
+                self.balloonThreeWidthConstraint.constant = CGRectGetWidth(dotImageView.bounds) * widthCount * 2.0f;
+                self.balloonThreeHeightConstraint.constant = CGRectGetWidth(dotImageView.bounds) * widthCount * 2.0f;
+            }];
+        }];
+        
+        [self.dotViewThree addSubview:dotImageView];
+        [CATransaction commit];
+    }
+   
 }
 
 @end

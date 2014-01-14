@@ -10,7 +10,7 @@
 
 @interface AirTubeView : UIView
 
-- (void)drawAirTubeAtPosition:(NSString *)position;
+- (void)drawAirTube;
 - (void)animateIdeaAlongAirTubeAtPosition:(NSString *)position completion:(void (^)(BOOL finished))completionBlock;
 
 @end
