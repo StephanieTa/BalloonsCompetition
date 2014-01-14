@@ -11,6 +11,7 @@
 #import "AirPumpView.h"
 #import "AirTubeView.h"
 #import "BalloonView.h"
+#import "MasterBalloonView.h"
 
 @interface ViewController : UIViewController <AirPumpViewDelegate>
 
@@ -21,5 +22,7 @@
 @property (nonatomic, strong) AirTubeView *airTubeLeft;
 @property (nonatomic, strong) AirTubeView *airTubeCenter;
 @property (nonatomic, strong) AirTubeView *airTubeRight;
+
+@property (nonatomic, strong) MasterBalloonView *masterBalloonView;
 
 @end

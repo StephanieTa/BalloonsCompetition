@@ -21,15 +21,15 @@
     
     // Set up child balloons
     
-    self.firstChildBalloonView = [[UIView alloc] init];
+    self.firstChildBalloonView = [[BalloonView alloc] init];
     self.firstChildBalloonView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.firstChildBalloonView];
     
-    self.secondChildBalloonView = [[UIView alloc] init];
+    self.secondChildBalloonView = [[BalloonView alloc] init];
     self.secondChildBalloonView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.secondChildBalloonView];
     
-    self.thirdChildBalloonView = [[UIView alloc] init];
+    self.thirdChildBalloonView = [[BalloonView alloc] init];
     self.thirdChildBalloonView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.thirdChildBalloonView];
     
@@ -44,12 +44,14 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_firstChildBalloonView][_thirdChildBalloonView]|"
                                                                  options:0 metrics:nil views:views]];
     
-    NSLayoutConstraint *firstChildBalloonSizeConstraint = [NSLayoutConstraint constraintWithItem:self.firstChildBalloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:self.firstChildBalloonWidthConstraint.constant];
-    NSLayoutConstraint *secondChildBalloonSizeConstraint = [NSLayoutConstraint constraintWithItem:self.secondChildBalloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:self.secondChildBalloonWidthConstraint.constant];
-    NSLayoutConstraint *thirdChildBalloonSizeConstraint = [NSLayoutConstraint constraintWithItem:self.thirdChildBalloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:self.thirdChildBalloonWidthConstraint.constant];
+    self.firstChildBalloonWidthConstraint = [NSLayoutConstraint constraintWithItem:self.firstChildBalloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:10.0f];
+    self.firstChildBalloonHeightConstraint = [NSLayoutConstraint constraintWithItem:self.firstChildBalloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:10.0f];
+    self.secondChildBalloonWidthConstraint = [NSLayoutConstraint constraintWithItem:self.secondChildBalloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:10.0f];
+    self.secondChildBalloonHeightConstraint = [NSLayoutConstraint constraintWithItem:self.firstChildBalloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:10.0f];
+    self.thirdChildBalloonWidthConstraint = [NSLayoutConstraint constraintWithItem:self.thirdChildBalloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:10.0f];
+    self.thirdChildBalloonHeightConstraint = [NSLayoutConstraint constraintWithItem:self.firstChildBalloonView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:10.0f];
     
-    [self addConstraints:@[firstChildBalloonSizeConstraint, secondChildBalloonSizeConstraint, thirdChildBalloonSizeConstraint]];
-    
+    [self addConstraints:@[_firstChildBalloonWidthConstraint, _firstChildBalloonHeightConstraint, _secondChildBalloonWidthConstraint, _secondChildBalloonHeightConstraint, _thirdChildBalloonWidthConstraint, _thirdChildBalloonHeightConstraint]];
 }
 
 - (id)initWithFrame:(CGRect)frame {
