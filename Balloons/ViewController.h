@@ -10,14 +10,17 @@
 
 #import "AirPumpView.h"
 #import "BalloonView.h"
+#import "CloudView.h"
+#import "IdeaView.h"
 
 @interface ViewController : UIViewController <AirPumpViewDelegate>
 
 @property (nonatomic, strong) AirPumpView *airPumpOne;
 @property (nonatomic, strong) AirPumpView *airPumpTwo;
 @property (nonatomic, strong) AirPumpView *airPumpThree;
-@property (nonatomic, strong) BalloonView *balloonViewOne;
-@property (nonatomic, strong) BalloonView *balloonViewTwo;
-@property (nonatomic, strong) BalloonView *balloonViewThree;
+@property (nonatomic, strong) IdeaView *ideaViewOne;
+@property (nonatomic, strong) IdeaView *ideaViewTwo;
+@property (nonatomic, strong) IdeaView *ideaViewThree;
+@property (nonatomic, strong) CloudView *cloudView;
 
 @end

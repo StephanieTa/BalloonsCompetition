@@ -13,6 +13,7 @@
 		2112CF8C1881C04E00519376 /* greenDot.png in Resources */ = {isa = PBXBuildFile; fileRef = 2112CF8A1881C04E00519376 /* greenDot.png */; };
 		2112CF8D1881C04E00519376 /* redDot.png in Resources */ = {isa = PBXBuildFile; fileRef = 2112CF8B1881C04E00519376 /* redDot.png */; };
 		2112CF8F1881C6F000519376 /* cloudBG.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2112CF8E1881C6F000519376 /* cloudBG.jpg */; };
+		2130212A1885F6C500F358DD /* IdeaView.m in Sources */ = {isa = PBXBuildFile; fileRef = 213021291885F6C500F358DD /* IdeaView.m */; };
 		21310025187714A700519753 /* AirTubeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21310024187714A700519753 /* AirTubeView.m */; };
 		21317FF81882D369006E0E75 /* yellowBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 21317FF71882D369006E0E75 /* yellowBG.png */; };
 		21317FFA1882E2A0006E0E75 /* greenBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 21317FF91882E2A0006E0E75 /* greenBG.png */; };
@@ -39,7 +40,6 @@
 		21AF06511875D06100B1568A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AF06501875D06100B1568A /* QuartzCore.framework */; };
 		21AF06531875D06D00B1568A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AF06521875D06D00B1568A /* libz.dylib */; };
 		21AF06551875D0F000B1568A /* SparkInspector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21AF06541875D0F000B1568A /* SparkInspector.framework */; };
-		21E53A19187C13510083B2D7 /* MasterBalloonView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21E53A18187C13510083B2D7 /* MasterBalloonView.m */; };
 		21EF7A831879FD8F0049FEB7 /* airPumpTop.png in Resources */ = {isa = PBXBuildFile; fileRef = 21EF7A821879FD8F0049FEB7 /* airPumpTop.png */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +52,8 @@
 		2112CF8A1881C04E00519376 /* greenDot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenDot.png; sourceTree = "<group>"; };
 		2112CF8B1881C04E00519376 /* redDot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redDot.png; sourceTree = "<group>"; };
 		2112CF8E1881C6F000519376 /* cloudBG.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cloudBG.jpg; sourceTree = "<group>"; };
+		213021281885F6C500F358DD /* IdeaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdeaView.h; sourceTree = "<group>"; };
+		213021291885F6C500F358DD /* IdeaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdeaView.m; sourceTree = "<group>"; };
 		21310023187714A700519753 /* AirTubeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AirTubeView.h; sourceTree = "<group>"; };
 		21310024187714A700519753 /* AirTubeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AirTubeView.m; sourceTree = "<group>"; };
 		21317FF71882D369006E0E75 /* yellowBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowBG.png; sourceTree = "<group>"; };
@@ -88,8 +90,6 @@
 		21AF06501875D06100B1568A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		21AF06521875D06D00B1568A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		21AF06541875D0F000B1568A /* SparkInspector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SparkInspector.framework; path = "../../../../../Applications/Spark Inspector.app/Contents/Resources/Frameworks/SparkInspector.framework"; sourceTree = "<group>"; };
-		21E53A17187C13510083B2D7 /* MasterBalloonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterBalloonView.h; sourceTree = "<group>"; };
-		21E53A18187C13510083B2D7 /* MasterBalloonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterBalloonView.m; sourceTree = "<group>"; };
 		21EF7A821879FD8F0049FEB7 /* airPumpTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = airPumpTop.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,10 +168,10 @@
 				219BDF6A186C5C2F0059EC55 /* AppDelegate.m */,
 				21827199187F6315004F3C34 /* CloudView.h */,
 				2182719A187F6315004F3C34 /* CloudView.m */,
-				21E53A17187C13510083B2D7 /* MasterBalloonView.h */,
-				21E53A18187C13510083B2D7 /* MasterBalloonView.m */,
 				219BDF83186C71810059EC55 /* BalloonView.h */,
 				219BDF84186C71810059EC55 /* BalloonView.m */,
+				213021281885F6C500F358DD /* IdeaView.h */,
+				213021291885F6C500F358DD /* IdeaView.m */,
 				21310023187714A700519753 /* AirTubeView.h */,
 				21310024187714A700519753 /* AirTubeView.m */,
 				219BDF80186C699E0059EC55 /* AirPumpView.h */,
@@ -304,10 +304,10 @@
 				219BDF82186C699E0059EC55 /* AirPumpView.m in Sources */,
 				219BDF85186C71810059EC55 /* BalloonView.m in Sources */,
 				210DC09F187081360092E6B8 /* UIColor+ColorTools.m in Sources */,
+				2130212A1885F6C500F358DD /* IdeaView.m in Sources */,
 				210DC0A2187082A90092E6B8 /* UIBezierPath+BalloonGlyph.m in Sources */,
 				21310025187714A700519753 /* AirTubeView.m in Sources */,
 				2182719B187F6315004F3C34 /* CloudView.m in Sources */,
-				21E53A19187C13510083B2D7 /* MasterBalloonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
