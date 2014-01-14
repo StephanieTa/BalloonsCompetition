@@ -39,7 +39,7 @@
     [self addSubview:tubeImageView];
 }
 
-- (void)animateIdeaAlongAirTubeAtPosition:(NSString *)position completion:(void (^)(BOOL))completionBlock {
+- (void)animateIdeaAlongPathOnCompletion:(void (^)(BOOL))completionBlock {
     
 	// Prepare the animation
     

@@ -11,6 +11,6 @@
 @interface AirTubeView : UIView
 
 - (void)drawAirTube;
-- (void)animateIdeaAlongAirTubeAtPosition:(NSString *)position completion:(void (^)(BOOL finished))completionBlock;
+- (void)animateIdeaAlongPathOnCompletion:(void (^)(BOOL finished))completionBlock;
 
 @end

@@ -115,13 +115,13 @@ static CGFloat const dotSize = 10.0f;
     
     [UIView animateWithDuration:5.0f animations:^{
         if ([airPumpView isEqual:self.airPumpOne]) {
-            [self.airPumpOne.airTubeView animateIdeaAlongAirTubeAtPosition:@"Left" completion:completionBlockA];
+            [self.airPumpOne.airTubeView animateIdeaAlongPathOnCompletion:completionBlockA];
         }
         else if ([airPumpView isEqual:self.airPumpTwo]) {
-            [self.airPumpTwo.airTubeView animateIdeaAlongAirTubeAtPosition:@"Center" completion:completionBlockB];
+            [self.airPumpTwo.airTubeView animateIdeaAlongPathOnCompletion:completionBlockB];
         }
         else if ([airPumpView isEqual:self.airPumpThree]) {
-            [self.airPumpThree.airTubeView animateIdeaAlongAirTubeAtPosition:@"Right" completion:completionBlockC];
+            [self.airPumpThree.airTubeView animateIdeaAlongPathOnCompletion:completionBlockC];
         }
     }];
 }
