@@ -34,6 +34,7 @@ static CGFloat const dotSize = 10.0f;
     // Set up balloon view
     
     self.balloonView = [[BalloonView alloc] init];
+    self.balloonView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.balloonView];
     
     // Layout
@@ -55,7 +56,6 @@ static CGFloat const dotSize = 10.0f;
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.translatesAutoresizingMaskIntoConstraints = NO;
         self.backgroundColor = nil;
         self.opaque = NO;
         [self initIdeaView];

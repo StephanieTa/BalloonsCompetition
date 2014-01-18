@@ -18,7 +18,6 @@
     if (self) {
         self.backgroundColor = nil;
         self.opaque = NO;
-        self.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return self;
 }
@@ -41,7 +40,7 @@
     [self addSubview:tubeImageView];
 }
 
-- (void)animateIdeaAlongPathOnCompletion:(void (^)(BOOL))completionBlock {
+- (void)animateIdeaAlongPathWithCompletion:(void (^)(BOOL))completionBlock {
     
 	// Prepare the animation
     

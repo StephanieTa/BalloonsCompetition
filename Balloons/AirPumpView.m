@@ -39,9 +39,10 @@
     // Set up air pump bottom
     
     self.bottomView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"airPumpBottomRed.png"]];
+    self.bottomView.userInteractionEnabled = YES;
     self.bottomView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.bottomView];
-
+    
     // Layout
     NSDictionary *views = NSDictionaryOfVariableBindings(_topView, _bottomView, _airTubeView);
     
@@ -54,7 +55,7 @@
     // Actions
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onAirPumpTouchUpInside:)];
-    [self addGestureRecognizer:tapGesture];
+    [self.bottomView addGestureRecognizer:tapGesture];
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -63,7 +64,6 @@
         self.frame = frame;
         self.backgroundColor = nil;
         self.opaque = NO;
-        self.translatesAutoresizingMaskIntoConstraints = NO;
         [self initAirPump];
     }
     return self;

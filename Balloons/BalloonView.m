@@ -47,7 +47,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self initBallon];
-        self.translatesAutoresizingMaskIntoConstraints = NO;
         self.backgroundColor = nil;
         self.opaque = NO;
     }

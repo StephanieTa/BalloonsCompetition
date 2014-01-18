@@ -20,14 +20,17 @@
 @property (nonatomic, strong) AirPumpView *airPumpOne;
 @property (nonatomic, strong) AirPumpView *airPumpTwo;
 @property (nonatomic, strong) AirPumpView *airPumpThree;
+
 @property (nonatomic, strong) IdeaView *ideaViewOne;
 @property (nonatomic, strong) IdeaView *ideaViewTwo;
 @property (nonatomic, strong) IdeaView *ideaViewThree;
+
 @property (nonatomic, strong) CloudView *cloudView;
 
 @property (nonatomic, strong) NSLayoutConstraint *ideaViewOnePositionYConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *ideaViewTwoPositionYConstraint;
 @property (nonatomic, strong) NSLayoutConstraint *ideaViewThreePositionYConstraint;
+
 @property (nonatomic, assign) CGFloat currentHeightBalloonOne;
 @property (nonatomic, assign) CGFloat currentHeightBalloonTwo;
 @property (nonatomic, assign) CGFloat currentHeightBalloonThree;
@@ -47,6 +50,7 @@
     // Set up cloud view
     
     self.cloudView = [[CloudView alloc] init];
+    self.cloudView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:self.cloudView];
     [self.cloudView animateCloudView];
     
@@ -59,25 +63,31 @@
     // Set up idea view
 
     self.ideaViewOne = [[IdeaView alloc] init];
+    self.ideaViewOne.translatesAutoresizingMaskIntoConstraints = NO;
     [self.cloudView addSubview:self.ideaViewOne];
     
     self.ideaViewTwo = [[IdeaView alloc] init];
+    self.ideaViewTwo.translatesAutoresizingMaskIntoConstraints = NO;
     [self.cloudView addSubview:self.ideaViewTwo];
     
     self.ideaViewThree = [[IdeaView alloc] init];
+    self.ideaViewThree.translatesAutoresizingMaskIntoConstraints = NO;
     [self.cloudView addSubview:self.ideaViewThree];
     
     // Set up air pumps
     
     self.airPumpOne = [[AirPumpView alloc] init];
+    self.airPumpOne.translatesAutoresizingMaskIntoConstraints = NO;
     self.airPumpOne.delegate = self;
     [self.view addSubview:self.airPumpOne];
     
     self.airPumpTwo = [[AirPumpView alloc] init];
+    self.airPumpTwo.translatesAutoresizingMaskIntoConstraints = NO;
     self.airPumpTwo.delegate = self;
     [self.view addSubview:self.airPumpTwo];
     
     self.airPumpThree = [[AirPumpView alloc] init];
+    self.airPumpThree.translatesAutoresizingMaskIntoConstraints = NO;
     self.airPumpThree.delegate = self;
     [self.view addSubview:self.airPumpThree];
     
@@ -193,13 +203,13 @@
     };
     
     if ([airPumpView isEqual:self.airPumpOne]) {
-        [self.airPumpOne.airTubeView animateIdeaAlongPathOnCompletion:completionBlockA];
+        [self.airPumpOne.airTubeView animateIdeaAlongPathWithCompletion:completionBlockA];
     }
     else if ([airPumpView isEqual:self.airPumpTwo]) {
-        [self.airPumpTwo.airTubeView animateIdeaAlongPathOnCompletion:completionBlockB];
+        [self.airPumpTwo.airTubeView animateIdeaAlongPathWithCompletion:completionBlockB];
     }
     else if ([airPumpView isEqual:self.airPumpThree]) {
-        [self.airPumpThree.airTubeView animateIdeaAlongPathOnCompletion:completionBlockC];
+        [self.airPumpThree.airTubeView animateIdeaAlongPathWithCompletion:completionBlockC];
     }
 }
 
