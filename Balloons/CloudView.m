@@ -56,6 +56,8 @@
     return self;
 }
 
+#pragma mark - Public methods
+
 - (void)animateCloudView {
     [UIImageView animateWithDuration:180.0f
                                delay:3.0f

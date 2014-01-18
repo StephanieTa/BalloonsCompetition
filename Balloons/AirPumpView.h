@@ -14,12 +14,8 @@
 
 @interface AirPumpView : UIView
 
-@property (nonatomic, strong) UIImageView *bottomView;
-@property (nonatomic, strong) UIImageView *topView;
 @property (nonatomic, strong) AirTubeView *airTubeView;
 @property (nonatomic, weak) id <AirPumpViewDelegate> delegate;
-
-- (void)initAirPump;
 
 @end
 

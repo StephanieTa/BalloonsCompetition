@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BalloonView.h"
 
 @interface IdeaView : UIView
 
-@property (nonatomic, strong) BalloonView *balloonView;
+@property (nonatomic, strong) NSLayoutConstraint *balloonWidthConstraint;
+@property (nonatomic, strong) NSLayoutConstraint *balloonHeightConstraint;
 
-- (void)addIdeaWithImage:(UIImage *)image;
+- (CGPoint)calculateNewIdeaPosition;
 - (void)drawDotAtPoint:(CGPoint)point withImage:(UIImage *)image;
 
 @end

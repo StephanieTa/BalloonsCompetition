@@ -23,6 +23,8 @@
     return self;
 }
 
+#pragma mark - Public methods
+
 - (void)drawAirTube {
     UIGraphicsBeginImageContext(CGSizeMake(125.0f, 115.0));
     
@@ -46,7 +48,7 @@
 	CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
 	pathAnimation.calculationMode = kCAAnimationPaced;
 	pathAnimation.fillMode = kCAFillModeForwards;
-	pathAnimation.duration = 5.0;
+	pathAnimation.duration = 3.0;
     
     UIBezierPath *tubePath = [UIBezierPath airTubeGlyphCenter];
     [tubePath applyTransform:CGAffineTransformMakeScale(1.0f, 0.7f)];

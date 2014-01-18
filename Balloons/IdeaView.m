@@ -7,7 +7,7 @@
 //
 
 #import "IdeaView.h"
-
+#import "BalloonView.h"
 
 static CGFloat const balloonSize = 100.0f;
 static CGFloat const dotSize = 10.0f;
@@ -15,13 +15,12 @@ static CGFloat const dotSize = 10.0f;
 
 @interface IdeaView ()
 
+@property (nonatomic, strong) BalloonView *balloonView;
+
 @property (nonatomic) NSInteger round;
 @property (nonatomic) BOOL yTurn;
 @property (nonatomic) NSInteger changeNr;
 @property (nonatomic) CGPoint point;
-
-@property (nonatomic, strong) NSLayoutConstraint *balloonWidthConstraint;
-@property (nonatomic, strong) NSLayoutConstraint *balloonHeightConstraint;
 
 - (void)initIdeaView;
 
@@ -64,15 +63,14 @@ static CGFloat const dotSize = 10.0f;
     return self;
 }
 
-#pragma mark - Private methods
+#pragma mark - Public methods
 
-- (void)addIdeaWithImage:(UIImage *)image {
+- (CGPoint)calculateNewIdeaPosition {
     CGPoint point = self.point;
     
     // Calculate point at where to add new idea
     
     if (self.round == 0) {
-        [self drawDotAtPoint:point withImage:image];
         self.round++;
     }
     else {
@@ -117,10 +115,8 @@ static CGFloat const dotSize = 10.0f;
             }
         }
         self.point = point;
-        
-        // Draw dot at calculated point
-        [self drawDotAtPoint:point withImage:image];
     }
+    return self.point;
 }
 
 - (void)drawDotAtPoint:(CGPoint)point withImage:(UIImage *)image {
@@ -135,9 +131,9 @@ static CGFloat const dotSize = 10.0f;
             dotImageView.frame = CGRectMake(point.x, point.y, 8.0f, 8.0f);
             
             // Recalculate balloonView size
-            CGFloat widthCount = ceilf(sqrtf(self.subviews.count));
-            self.balloonWidthConstraint.constant = CGRectGetWidth(dotImageView.bounds) * widthCount * 2.0f;
-            self.balloonHeightConstraint.constant = CGRectGetWidth(dotImageView.bounds) * widthCount * 2.0f;
+            CGFloat widthCount = ceilf(sqrtf(self.subviews.count - 1));
+            self.balloonWidthConstraint.constant = dotSize * widthCount * 2.0f;
+            self.balloonHeightConstraint.constant = dotSize * widthCount * 2.0f;
         }];
     }];
     

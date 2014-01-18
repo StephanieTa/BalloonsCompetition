@@ -8,8 +8,6 @@
 
 #import "BalloonView.h"
 
-#import <QuartzCore/QuartzCore.h>
-
 #import "UIBezierPath+BalloonGlyph.h"
 #import "UIColor+ColorTools.h"
 
