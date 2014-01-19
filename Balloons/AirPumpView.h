@@ -17,6 +17,8 @@
 @property (nonatomic, strong) AirTubeView *airTubeView;
 @property (nonatomic, weak) id <AirPumpViewDelegate> delegate;
 
+- (void)setUpAirPumpWithImage:(UIImage *)airPumpImage;
+
 @end
 
 @protocol AirPumpViewDelegate <NSObject>

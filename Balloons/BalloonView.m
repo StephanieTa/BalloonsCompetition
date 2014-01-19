@@ -37,7 +37,7 @@
     return self;
 }
 
-- (void)setBalloonWithImage:(UIImage *)balloonImage {
+- (void)setUpBalloonWithImage:(UIImage *)balloonImage {
     [self.balloonImageView setImage:balloonImage];
 }
 

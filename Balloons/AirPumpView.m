@@ -38,7 +38,7 @@
     
     // Set up air pump bottom
     
-    self.bottomView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"airPumpBottomRed.png"]];
+    self.bottomView = [[UIImageView alloc] init];
     self.bottomView.userInteractionEnabled = YES;
     self.bottomView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.bottomView];
@@ -67,6 +67,12 @@
         [self initAirPump];
     }
     return self;
+}
+
+#pragma mark - Public methods
+
+- (void)setUpAirPumpWithImage:(UIImage *)airPumpImage {
+    [self.bottomView setImage:airPumpImage];
 }
 
 #pragma mark - Private methods
