@@ -15,8 +15,6 @@ static CGFloat const dotSize = 10.0f;
 
 @interface IdeaView ()
 
-@property (nonatomic, strong) BalloonView *balloonView;
-
 @property (nonatomic) NSInteger round;
 @property (nonatomic) BOOL yTurn;
 @property (nonatomic) NSInteger changeNr;

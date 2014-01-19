@@ -8,9 +8,6 @@
 
 #import "ViewController.h"
 
-#import "UIColor+ColorTools.h"
-
-#import "BalloonView.h"
 #import "CloudView.h"
 #import "IdeaView.h"
 
@@ -64,14 +61,17 @@
 
     self.ideaViewOne = [[IdeaView alloc] init];
     self.ideaViewOne.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.ideaViewOne.balloonView setBalloonWithImage:[UIImage imageNamed:@"orangeBalloon.png"]];
     [self.cloudView addSubview:self.ideaViewOne];
     
     self.ideaViewTwo = [[IdeaView alloc] init];
     self.ideaViewTwo.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.ideaViewTwo.balloonView setBalloonWithImage:[UIImage imageNamed:@"greenBalloon.png"]];
     [self.cloudView addSubview:self.ideaViewTwo];
     
     self.ideaViewThree = [[IdeaView alloc] init];
     self.ideaViewThree.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.ideaViewThree.balloonView setBalloonWithImage:[UIImage imageNamed:@"blueBalloon.png"]];
     [self.cloudView addSubview:self.ideaViewThree];
     
     // Set up air pumps
@@ -165,7 +165,7 @@
     
     void (^completionBlockA)(BOOL) = ^(BOOL finished) {
         CGPoint position = [self.ideaViewOne calculateNewIdeaPosition];
-        [self.ideaViewOne drawDotAtPoint:position withImage:[UIImage imageNamed:@"blueDot.png"]];
+        [self.ideaViewOne drawDotAtPoint:position withImage:[UIImage imageNamed:@"redDot.png"]];
         
         [CATransaction begin];
         [CATransaction setCompletionBlock:^{
@@ -178,7 +178,7 @@
     
     void (^completionBlockB)(BOOL) = ^(BOOL finished) {
         CGPoint position = [self.ideaViewTwo calculateNewIdeaPosition];
-        [self.ideaViewTwo drawDotAtPoint:position withImage:[UIImage imageNamed:@"redDot.png"]];
+        [self.ideaViewTwo drawDotAtPoint:position withImage:[UIImage imageNamed:@"greenDot.png"]];
         
         [CATransaction begin];
         [CATransaction setCompletionBlock:^{
@@ -191,7 +191,7 @@
     
     void (^completionBlockC)(BOOL) = ^(BOOL finished) {
         CGPoint position = [self.ideaViewThree calculateNewIdeaPosition];
-        [self.ideaViewThree drawDotAtPoint:position withImage:[UIImage imageNamed:@"greenDot.png"]];
+        [self.ideaViewThree drawDotAtPoint:position withImage:[UIImage imageNamed:@"blueDot.png"]];
         
         [CATransaction begin];
         [CATransaction setCompletionBlock:^{
