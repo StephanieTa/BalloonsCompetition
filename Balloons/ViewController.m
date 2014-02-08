@@ -175,8 +175,14 @@
             if (self.ideaViewOne.balloonHeightConstraint.constant > self.currentHeightBalloonOne) {
                 self.currentHeightBalloonOne = self.ideaViewOne.balloonHeightConstraint.constant;
                 self.ideaViewOnePositionYConstraint.constant -= 10.0f;
+                [self.view setNeedsUpdateConstraints];
+                
+                [UIView animateWithDuration:0.5f animations:^{
+                    [self.view layoutIfNeeded];
+                }];
             }
         }];
+        [CATransaction commit];
     };
     
     void (^completionBlockB)(BOOL) = ^(BOOL finished) {
@@ -188,8 +194,14 @@
             if (self.ideaViewTwo.balloonHeightConstraint.constant > self.currentHeightBalloonTwo) {
                 self.currentHeightBalloonTwo = self.ideaViewTwo.balloonHeightConstraint.constant;
                 self.ideaViewTwoPositionYConstraint.constant -= 10.0f;
+                [self.view setNeedsUpdateConstraints];
+                
+                [UIView animateWithDuration:0.5f animations:^{
+                    [self.view layoutIfNeeded];
+                }];
             }
         }];
+        [CATransaction commit];
     };
     
     void (^completionBlockC)(BOOL) = ^(BOOL finished) {
@@ -201,8 +213,14 @@
             if (self.ideaViewThree.balloonHeightConstraint.constant > self.currentHeightBalloonThree) {
                 self.currentHeightBalloonThree = self.ideaViewThree.balloonHeightConstraint.constant;
                 self.ideaViewThreePositionYConstraint.constant -= 10.0f;
+                [self.view setNeedsUpdateConstraints];
+                
+                [UIView animateWithDuration:0.5f animations:^{
+                    [self.view layoutIfNeeded];
+                }];
             }
         }];
+        [CATransaction commit];
     };
     
     if ([airPumpView isEqual:self.airPumpOne]) {
