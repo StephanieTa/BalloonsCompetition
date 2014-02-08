@@ -106,7 +106,7 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[groundView]|" options:0 metrics:nil views:views]];
     
     // Idea views
-    [self.cloudView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-20.0-[_ideaViewOne(100.0)]-60.0-[_ideaViewTwo(100.0)]-60.0-[_ideaViewThree(100.0)]" options:0 metrics:0 views:views]];
+    [self.cloudView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-35.0-[_ideaViewOne(100.0)]-90.0-[_ideaViewTwo(100.0)]-90.0-[_ideaViewThree(100.0)]" options:0 metrics:0 views:views]];
     
     [self.cloudView addConstraint:
      [NSLayoutConstraint constraintWithItem:self.ideaViewOne
@@ -158,7 +158,7 @@
     [self.cloudView addConstraints:@[self.ideaViewOnePositionYConstraint, self.ideaViewTwoPositionYConstraint, self.ideaViewThreePositionYConstraint]];
     
     // AirPumps with airtube
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_airPumpOne(160.0)][_airPumpTwo(==_airPumpOne)][_airPumpThree(==_airPumpOne)]" options:(NSLayoutFormatAlignAllBottom | NSLayoutFormatAlignAllTop) metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_airPumpOne(190.0)][_airPumpTwo(==_airPumpOne)][_airPumpThree(==_airPumpOne)]" options:(NSLayoutFormatAlignAllBottom | NSLayoutFormatAlignAllTop) metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airPumpOne(120.0)]-20.0-|" options:0 metrics:nil views:views]];
 }
 
