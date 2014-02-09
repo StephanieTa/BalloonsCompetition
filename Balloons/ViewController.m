@@ -32,6 +32,15 @@
 @property (nonatomic, assign) CGFloat currentHeightBalloonTwo;
 @property (nonatomic, assign) CGFloat currentHeightBalloonThree;
 
+@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) NSCalendar *calendar;
+@property (nonatomic) NSInteger counter;
+
+@property (nonatomic, strong) NSDate *start;
+@property (nonatomic, strong) NSDate *stop;
+
+- (void)logDataFromAirTube:(AirTubeView *)airTube;
+
 @end
 
 
@@ -39,10 +48,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view setNeedsUpdateConstraints];
     
     self.currentHeightBalloonOne = 10.0f;
     self.currentHeightBalloonTwo = 10.0f;
     self.currentHeightBalloonThree = 10.0f;
+    
+    // Log start of user study
+    
+    self.counter = 1;
+    self.start = [NSDate date];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsDirectory = [paths objectAtIndex:0];
+    NSString *path = [docsDirectory stringByAppendingPathComponent:@"dataLogging.txt"];
+    NSString *message = @"\n***** Start of new user study: Model Competition *****\n\n";
+    
+//    [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]){
+        [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
+    }
+    
+    NSFileHandle *logFile = [NSFileHandle fileHandleForUpdatingAtPath:path];
+    [logFile seekToEndOfFile];
+    [logFile writeData:[message dataUsingEncoding:NSUTF8StringEncoding]];
     
     // Set up cloud view
     
@@ -79,18 +108,21 @@
     self.airPumpOne = [[AirPumpView alloc] init];
     self.airPumpOne.translatesAutoresizingMaskIntoConstraints = NO;
     [self.airPumpOne setUpAirPumpWithImage:[UIImage imageNamed:@"airPumpBottomPurple.png"]];
+    self.airPumpOne.airTubeView.identification = @"Links";
     self.airPumpOne.delegate = self;
     [self.view addSubview:self.airPumpOne];
     
     self.airPumpTwo = [[AirPumpView alloc] init];
     self.airPumpTwo.translatesAutoresizingMaskIntoConstraints = NO;
     [self.airPumpTwo setUpAirPumpWithImage:[UIImage imageNamed:@"airPumpBottomGreen.png"]];
+    self.airPumpTwo.airTubeView.identification = @"Mitte";
     self.airPumpTwo.delegate = self;
     [self.view addSubview:self.airPumpTwo];
     
     self.airPumpThree = [[AirPumpView alloc] init];
     self.airPumpThree.translatesAutoresizingMaskIntoConstraints = NO;
     [self.airPumpThree setUpAirPumpWithImage:[UIImage imageNamed:@"airPumpBottomBlue.png"]];
+    self.airPumpThree.airTubeView.identification = @"Rechts";
     self.airPumpThree.delegate = self;
     [self.view addSubview:self.airPumpThree];
     
@@ -179,7 +211,6 @@
             if (self.ideaViewOne.balloonHeightConstraint.constant > self.currentHeightBalloonOne) {
                 self.currentHeightBalloonOne = self.ideaViewOne.balloonHeightConstraint.constant;
                 self.ideaViewOnePositionYConstraint.constant -= 10.0f;
-                [self.view setNeedsUpdateConstraints];
                 
                 [UIView animateWithDuration:0.5f animations:^{
                     [self.view layoutIfNeeded];
@@ -198,7 +229,6 @@
             if (self.ideaViewTwo.balloonHeightConstraint.constant > self.currentHeightBalloonTwo) {
                 self.currentHeightBalloonTwo = self.ideaViewTwo.balloonHeightConstraint.constant;
                 self.ideaViewTwoPositionYConstraint.constant -= 10.0f;
-                [self.view setNeedsUpdateConstraints];
                 
                 [UIView animateWithDuration:0.5f animations:^{
                     [self.view layoutIfNeeded];
@@ -217,7 +247,6 @@
             if (self.ideaViewThree.balloonHeightConstraint.constant > self.currentHeightBalloonThree) {
                 self.currentHeightBalloonThree = self.ideaViewThree.balloonHeightConstraint.constant;
                 self.ideaViewThreePositionYConstraint.constant -= 10.0f;
-                [self.view setNeedsUpdateConstraints];
                 
                 [UIView animateWithDuration:0.5f animations:^{
                     [self.view layoutIfNeeded];
@@ -229,13 +258,55 @@
     
     if ([airPumpView isEqual:self.airPumpOne]) {
         [self.airPumpOne.airTubeView animateIdeaAlongPathWithCompletion:completionBlockA];
+        [self logDataFromAirTube:self.airPumpOne.airTubeView];
     }
     else if ([airPumpView isEqual:self.airPumpTwo]) {
         [self.airPumpTwo.airTubeView animateIdeaAlongPathWithCompletion:completionBlockB];
+        [self logDataFromAirTube:self.airPumpTwo.airTubeView];
     }
     else if ([airPumpView isEqual:self.airPumpThree]) {
         [self.airPumpThree.airTubeView animateIdeaAlongPathWithCompletion:completionBlockC];
+        [self logDataFromAirTube:self.airPumpThree.airTubeView];
     }
+}
+
+#pragma mark - Private methods
+
+- (void)logDataFromAirTube:(AirTubeView *)airTube {
+    
+    // Berechnung der Uhrzeit
+    
+    self.date = [NSDate date];
+    self.calendar = [NSCalendar currentCalendar];
+    NSDateComponents *components = [self.calendar components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:self.date];
+    NSInteger hour = [components hour];
+    NSInteger minute = [components minute];
+    NSInteger second = [components second];
+    
+    // Berechnung der Zeitdauer
+    
+    self.stop = [NSDate date];
+    NSTimeInterval timeIntervall = [self.stop timeIntervalSinceDate:self.start];
+    int timeIntervallMinutes = (int)floor(timeIntervall/60.0f);
+    int timeIntervallSeconds = (int)round(timeIntervall - timeIntervallMinutes * 60.0f);
+    NSString *timeIntervallString = [NSString stringWithFormat:@"%d:%d", timeIntervallMinutes, timeIntervallSeconds];
+    
+    // Logging
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsDirectory = [paths objectAtIndex:0];
+    NSString *path = [docsDirectory stringByAppendingPathComponent:@"dataLogging.txt"];
+    NSString *message = [NSString stringWithFormat:@"%d. Uhrzeit: %d:%d:%d, Zeitdauer: %@, Luftpumpe: %@\n", (int)self.counter, (int)hour, (int)minute, (int)second, timeIntervallString, airTube.identification];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]){
+        [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
+    }
+    
+    NSFileHandle *logFile = [NSFileHandle fileHandleForUpdatingAtPath:path];
+    [logFile seekToEndOfFile];
+    [logFile writeData:[message dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    self.counter += 1;
 }
 
 @end

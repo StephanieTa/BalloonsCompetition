@@ -10,6 +10,8 @@
 
 @interface AirTubeView : UIView
 
+@property (nonatomic) NSString *identification;
+
 - (void)drawAirTube;
 - (void)animateIdeaAlongPathWithCompletion:(void (^)(BOOL finished))completionBlock;
 
