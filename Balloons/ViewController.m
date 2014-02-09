@@ -162,6 +162,10 @@
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airPumpOne(120.0)]-20.0-|" options:0 metrics:nil views:views]];
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
+
 #pragma mark - airPump delegate methods
 
 - (void)didTapOnAirPump:(UIView *)airPumpView {
