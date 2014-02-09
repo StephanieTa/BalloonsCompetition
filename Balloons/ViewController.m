@@ -53,32 +53,32 @@
     
     // Set up ground view
     
-    UIImageView *groundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"greenBG.png"]];
-    groundView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.view addSubview:groundView];
+    UIImageView *grasslandView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"grassland.png"]];
+    grasslandView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addSubview:grasslandView];
     
     // Set up idea view
 
     self.ideaViewOne = [[IdeaView alloc] init];
     self.ideaViewOne.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.ideaViewOne.balloonView setUpBalloonWithImage:[UIImage imageNamed:@"orangeBalloon.png"]];
+    [self.ideaViewOne.balloonView setUpBalloonWithImage:[UIImage imageNamed:@"balloonPurple.png"]];
     [self.cloudView addSubview:self.ideaViewOne];
     
     self.ideaViewTwo = [[IdeaView alloc] init];
     self.ideaViewTwo.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.ideaViewTwo.balloonView setUpBalloonWithImage:[UIImage imageNamed:@"greenBalloon.png"]];
+    [self.ideaViewTwo.balloonView setUpBalloonWithImage:[UIImage imageNamed:@"balloonGreen.png"]];
     [self.cloudView addSubview:self.ideaViewTwo];
     
     self.ideaViewThree = [[IdeaView alloc] init];
     self.ideaViewThree.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.ideaViewThree.balloonView setUpBalloonWithImage:[UIImage imageNamed:@"blueBalloon.png"]];
+    [self.ideaViewThree.balloonView setUpBalloonWithImage:[UIImage imageNamed:@"balloonDarkBlue.png"]];
     [self.cloudView addSubview:self.ideaViewThree];
     
     // Set up air pumps
     
     self.airPumpOne = [[AirPumpView alloc] init];
     self.airPumpOne.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.airPumpOne setUpAirPumpWithImage:[UIImage imageNamed:@"airPumpBottomRed.png"]];
+    [self.airPumpOne setUpAirPumpWithImage:[UIImage imageNamed:@"airPumpBottomPurple.png"]];
     self.airPumpOne.delegate = self;
     [self.view addSubview:self.airPumpOne];
     
@@ -96,14 +96,14 @@
     
     // Layout views
 
-    NSDictionary *views = NSDictionaryOfVariableBindings(_cloudView, groundView, _ideaViewOne, _ideaViewTwo, _ideaViewThree, _airPumpOne, _airPumpTwo, _airPumpThree);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_cloudView, grasslandView, _ideaViewOne, _ideaViewTwo, _ideaViewThree, _airPumpOne, _airPumpTwo, _airPumpThree);
     
     // Background views
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_cloudView]|" options:0 metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_cloudView(200.0)]" options:0 metrics:nil views:views]];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[groundView]|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[groundView]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[grasslandView]|" options:0 metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[grasslandView]|" options:0 metrics:nil views:views]];
     
     // Idea views
     [self.cloudView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-35.0-[_ideaViewOne(100.0)]-90.0-[_ideaViewTwo(100.0)]-90.0-[_ideaViewThree(100.0)]" options:0 metrics:0 views:views]];
@@ -168,7 +168,7 @@
     
     void (^completionBlockA)(BOOL) = ^(BOOL finished) {
         CGPoint position = [self.ideaViewOne calculateNewIdeaPosition];
-        [self.ideaViewOne drawDotAtPoint:position withImage:[UIImage imageNamed:@"redDot.png"]];
+        [self.ideaViewOne drawDotAtPoint:position withImage:[UIImage imageNamed:@"dotPurple.png"]];
         
         [CATransaction begin];
         [CATransaction setCompletionBlock:^{
@@ -187,7 +187,7 @@
     
     void (^completionBlockB)(BOOL) = ^(BOOL finished) {
         CGPoint position = [self.ideaViewTwo calculateNewIdeaPosition];
-        [self.ideaViewTwo drawDotAtPoint:position withImage:[UIImage imageNamed:@"greenDot.png"]];
+        [self.ideaViewTwo drawDotAtPoint:position withImage:[UIImage imageNamed:@"dotGreen.png"]];
         
         [CATransaction begin];
         [CATransaction setCompletionBlock:^{
@@ -206,7 +206,7 @@
     
     void (^completionBlockC)(BOOL) = ^(BOOL finished) {
         CGPoint position = [self.ideaViewThree calculateNewIdeaPosition];
-        [self.ideaViewThree drawDotAtPoint:position withImage:[UIImage imageNamed:@"blueDot.png"]];
+        [self.ideaViewThree drawDotAtPoint:position withImage:[UIImage imageNamed:@"dotBlue.png"]];
         
         [CATransaction begin];
         [CATransaction setCompletionBlock:^{
