@@ -39,7 +39,7 @@
 @property (nonatomic, strong) NSDate *start;
 @property (nonatomic, strong) NSDate *stop;
 
-- (void)logDataFromAirTube:(AirTubeView *)airTube;
+- (void)logDataFromAirPump:(AirPumpView *)airpump;
 
 @end
 
@@ -59,16 +59,22 @@
     self.counter = 1;
     self.start = [NSDate date];
     
+    /* Comment this out when you start the app on your device
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDirectory = [paths objectAtIndex:0];
-    NSString *path = [docsDirectory stringByAppendingPathComponent:@"dataLogging.txt"];
-    NSString *message = @"\n***** Start of new user study: Model Competition *****\n\n";
+    NSString *path = [docsDirectory stringByAppendingPathComponent:@"dataLoggingFromDevice.txt"];
+    */
+    
+//    /* Comment this out when you start the app on the simulator, CHANGE "van" in path to your username!!!
+    NSString *path = @"/Users/van/Desktop/dataLoggingFromSimulator.txt";
+//    */
     
 //    [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]){
         [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
     }
     
+    NSString *message = @"\n***** Start of new user study: Model Competition *****\n\n";
     NSFileHandle *logFile = [NSFileHandle fileHandleForUpdatingAtPath:path];
     [logFile seekToEndOfFile];
     [logFile writeData:[message dataUsingEncoding:NSUTF8StringEncoding]];
@@ -107,22 +113,19 @@
     
     self.airPumpOne = [[AirPumpView alloc] init];
     self.airPumpOne.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.airPumpOne setUpAirPumpWithImage:[UIImage imageNamed:@"airPumpBottomPurple.png"]];
-    self.airPumpOne.airTubeView.identification = @"Links";
+    [self.airPumpOne setUpAirPumpWithID:@"Links" andImage:[UIImage imageNamed:@"airPumpBottomPurple.png"]];
     self.airPumpOne.delegate = self;
     [self.view addSubview:self.airPumpOne];
     
     self.airPumpTwo = [[AirPumpView alloc] init];
     self.airPumpTwo.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.airPumpTwo setUpAirPumpWithImage:[UIImage imageNamed:@"airPumpBottomGreen.png"]];
-    self.airPumpTwo.airTubeView.identification = @"Mitte";
+    [self.airPumpTwo setUpAirPumpWithID:@"Mitte" andImage:[UIImage imageNamed:@"airPumpBottomGreen.png"]];
     self.airPumpTwo.delegate = self;
     [self.view addSubview:self.airPumpTwo];
     
     self.airPumpThree = [[AirPumpView alloc] init];
     self.airPumpThree.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.airPumpThree setUpAirPumpWithImage:[UIImage imageNamed:@"airPumpBottomBlue.png"]];
-    self.airPumpThree.airTubeView.identification = @"Rechts";
+    [self.airPumpThree setUpAirPumpWithID:@"Rechts" andImage:[UIImage imageNamed:@"airPumpBottomBlue.png"]];
     self.airPumpThree.delegate = self;
     [self.view addSubview:self.airPumpThree];
     
@@ -190,7 +193,7 @@
     [self.cloudView addConstraints:@[self.ideaViewOnePositionYConstraint, self.ideaViewTwoPositionYConstraint, self.ideaViewThreePositionYConstraint]];
     
     // AirPumps with airtube
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_airPumpOne(190.0)][_airPumpTwo(==_airPumpOne)][_airPumpThree(==_airPumpOne)]" options:(NSLayoutFormatAlignAllBottom | NSLayoutFormatAlignAllTop) metrics:nil views:views]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_airPumpOne(==_airPumpTwo)][_airPumpTwo(==_airPumpOne)][_airPumpThree(==_airPumpTwo)]|" options:(NSLayoutFormatAlignAllBottom | NSLayoutFormatAlignAllTop) metrics:nil views:views]];
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airPumpOne(120.0)]-20.0-|" options:0 metrics:nil views:views]];
 }
 
@@ -258,21 +261,21 @@
     
     if ([airPumpView isEqual:self.airPumpOne]) {
         [self.airPumpOne.airTubeView animateIdeaAlongPathWithCompletion:completionBlockA];
-        [self logDataFromAirTube:self.airPumpOne.airTubeView];
+        [self logDataFromAirPump:self.airPumpOne];
     }
     else if ([airPumpView isEqual:self.airPumpTwo]) {
         [self.airPumpTwo.airTubeView animateIdeaAlongPathWithCompletion:completionBlockB];
-        [self logDataFromAirTube:self.airPumpTwo.airTubeView];
+        [self logDataFromAirPump:self.airPumpTwo];
     }
     else if ([airPumpView isEqual:self.airPumpThree]) {
         [self.airPumpThree.airTubeView animateIdeaAlongPathWithCompletion:completionBlockC];
-        [self logDataFromAirTube:self.airPumpThree.airTubeView];
+        [self logDataFromAirPump:self.airPumpThree];
     }
 }
 
 #pragma mark - Private methods
 
-- (void)logDataFromAirTube:(AirTubeView *)airTube {
+- (void)logDataFromAirPump:(AirPumpView *)airpump {
     
     // Berechnung der Uhrzeit
     
@@ -293,15 +296,21 @@
     
     // Logging
     
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docsDirectory = [paths objectAtIndex:0];
-    NSString *path = [docsDirectory stringByAppendingPathComponent:@"dataLogging.txt"];
-    NSString *message = [NSString stringWithFormat:@"%d. Uhrzeit: %d:%d:%d, Zeitdauer: %@, Luftpumpe: %@\n", (int)self.counter, (int)hour, (int)minute, (int)second, timeIntervallString, airTube.identification];
+    /* Comment this out when you start the app on your device
+     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+     NSString *docsDirectory = [paths objectAtIndex:0];
+     NSString *path = [docsDirectory stringByAppendingPathComponent:@"dataLoggingFromDevice.txt"];
+     */
+    
+//    /* Comment this out when you start the app on the simulator, CHANGE "van" in path to your username!!!
+    NSString *path = @"/Users/van/Desktop/dataLoggingFromSimulator.txt";
+//    */
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:path]){
         [[NSFileManager defaultManager] createFileAtPath:path contents:nil attributes:nil];
     }
     
+    NSString *message = [NSString stringWithFormat:@"%d. Uhrzeit: %d:%d:%d, Zeitdauer: %@, Luftpumpe: %@\n", (int)self.counter, (int)hour, (int)minute, (int)second, timeIntervallString, airpump.identification];
     NSFileHandle *logFile = [NSFileHandle fileHandleForUpdatingAtPath:path];
     [logFile seekToEndOfFile];
     [logFile writeData:[message dataUsingEncoding:NSUTF8StringEncoding]];
