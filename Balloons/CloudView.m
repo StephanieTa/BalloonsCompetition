@@ -78,7 +78,7 @@
     animation2.repeatCount = INFINITY;
     animation2.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
 
-    [self.cloud2.layer addAnimation:animation1 forKey:nil];
+    [self.cloud2.layer addAnimation:animation2 forKey:nil];
 
     CABasicAnimation *animation3 = [CABasicAnimation animationWithKeyPath:@"transform.translation.x"];
     animation3.duration = 150.0;
@@ -87,7 +87,7 @@
     animation3.repeatCount = INFINITY;
     animation3.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
 
-    [self.cloud3.layer addAnimation:animation1 forKey:nil];
+    [self.cloud3.layer addAnimation:animation3 forKey:nil];
 }
 
 @end
