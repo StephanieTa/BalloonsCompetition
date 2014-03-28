@@ -10,4 +10,6 @@
 
 @interface BalloonView : UIView
 
+- (void)setUpBalloonWithImage:(UIImage *)balloonImage;
+
 @end

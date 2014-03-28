@@ -25,12 +25,12 @@
     
     // Set up views
     
-    UIImageView *cloudBG = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloudBG.jpg"]];
-    cloudBG.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:cloudBG];
+    UIImageView *blueSky = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"blueSky.png"]];
+    blueSky.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:blueSky];
     
     self.cloud1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloudBig.png"]];
-    self.cloud1.frame = CGRectMake(480.0f, 10.0f, 100.0f, 60.0f);
+    self.cloud1.frame = CGRectMake(568.0f, 10.0f, 100.0f, 60.0f);
     [self addSubview:self.cloud1];
     
     self.cloud2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloudSmall.png"]];
@@ -38,45 +38,56 @@
     [self addSubview:self.cloud2];
     
     self.cloud3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cloudBig.png"]];
-    self.cloud3.frame = CGRectMake(480.0f, 70.0f, 70.0f, 30.0f);
+    self.cloud3.frame = CGRectMake(568.0f, 70.0f, 70.0f, 30.0f);
     [self addSubview:self.cloud3];
     
     // Layout
     
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[cloudBG]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(cloudBG)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[cloudBG]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(cloudBG)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[blueSky]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(blueSky)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[blueSky]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(blueSky)]];
 }
 
 - (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.translatesAutoresizingMaskIntoConstraints = NO;
         [self initCloudView];
     }
     return self;
 }
 
+#pragma mark - Public methods
+
 - (void)animateCloudView {
-    [UIImageView animateWithDuration:180.0f
-                               delay:3.0f
-                             options:(UIViewAnimationOptionRepeat | UIViewAnimationOptionCurveEaseIn)
-                          animations:^{
-                              self.cloud1.transform = CGAffineTransformMakeTranslation(-580.0f, 0);
-                          } completion:NULL];
-    
-    [UIImageView animateWithDuration:120.0f
-                               delay:7.0f
-                             options:(UIViewAnimationOptionRepeat | UIViewAnimationOptionCurveEaseIn)
-                          animations:^{
-                              self.cloud2.transform = CGAffineTransformMakeTranslation(560.0f, 0);
-                          } completion:NULL];
-    
-    [UIImageView animateWithDuration:150.0f
-                               delay:10.0f
-                             options:(UIViewAnimationOptionRepeat | UIViewAnimationOptionCurveEaseIn)
-                          animations:^{
-                              self.cloud3.transform = CGAffineTransformMakeTranslation(-580.0f, 0);
-                          } completion:NULL];
+    [self.cloud1.layer removeAllAnimations];
+    [self.cloud2.layer removeAllAnimations];
+    [self.cloud3.layer removeAllAnimations];
+
+    CABasicAnimation *animation1 = [CABasicAnimation animationWithKeyPath:@"transform.translation.x"];
+    animation1.duration = 180.0;
+    animation1.beginTime = CACurrentMediaTime() + 3.0;
+    animation1.toValue = @-668.0f;
+    animation1.repeatCount = INFINITY;
+    animation1.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+
+    [self.cloud1.layer addAnimation:animation1 forKey:nil];
+
+    CABasicAnimation *animation2 = [CABasicAnimation animationWithKeyPath:@"transform.translation.x"];
+    animation2.duration = 120.0;
+    animation2.beginTime = CACurrentMediaTime() + 7.0;
+    animation2.toValue = @648.0f;
+    animation2.repeatCount = INFINITY;
+    animation2.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+
+    [self.cloud2.layer addAnimation:animation2 forKey:nil];
+
+    CABasicAnimation *animation3 = [CABasicAnimation animationWithKeyPath:@"transform.translation.x"];
+    animation3.duration = 150.0;
+    animation3.beginTime = CACurrentMediaTime() + 1.0;
+    animation3.toValue = @-628.0f;
+    animation3.repeatCount = INFINITY;
+    animation3.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+
+    [self.cloud3.layer addAnimation:animation3 forKey:nil];
 }
 
 @end

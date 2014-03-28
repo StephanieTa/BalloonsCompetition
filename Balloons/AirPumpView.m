@@ -10,6 +10,10 @@
 
 @interface AirPumpView ()
 
+@property (nonatomic, strong) UIImageView *bottomView;
+@property (nonatomic, strong) UIImageView *topView;
+
+- (void)initAirPump;
 - (void)onAirPumpTouchUpInside:(id)sender;
 
 @end
@@ -19,22 +23,40 @@
 
 - (void)initAirPump {
     
+    // Set up air tube
+    
+    self.airTubeView = [[AirTubeView alloc] init];
+    self.airTubeView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.airTubeView drawAirTube];
+    [self addSubview:self.airTubeView];
+    
     // Set up air pump top
     
     self.topView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"airPumpTop.png"]];
-    self.topView.frame = CGRectMake(5.0f, 17.0f, 30.0f, 20.0f);
+    self.topView.frame = CGRectMake(60.0f, 55.0f, 30.0f, 20.0f);
     [self addSubview:self.topView];
     
     // Set up air pump bottom
     
-    self.bottomView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"airPumpBottomRed.png"]];
-    self.bottomView.frame = CGRectMake(0, 35.0f, 40.0f, 50.0f);
+    self.bottomView = [[UIImageView alloc] init];
+    self.bottomView.userInteractionEnabled = YES;
+    self.bottomView.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:self.bottomView];
-
+    
+    // Layout
+    NSDictionary *views = NSDictionaryOfVariableBindings(_topView, _bottomView, _airTubeView);
+    
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-55.0-[_bottomView(40.0)]" options:0 metrics:nil views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_bottomView(50.0)]|" options:0 metrics:nil views:views]];
+    
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.airTubeView attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0f constant:0]];
+    [self addConstraint:[NSLayoutConstraint constraintWithItem:self.airTubeView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:125.0f]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_airTubeView(115.0)]-2.0-|" options:0 metrics:nil views:views]];
+    
     // Actions
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onAirPumpTouchUpInside:)];
-    [self addGestureRecognizer:tapGesture];
+    [self.bottomView addGestureRecognizer:tapGesture];
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -43,10 +65,16 @@
         self.frame = frame;
         self.backgroundColor = nil;
         self.opaque = NO;
-        self.translatesAutoresizingMaskIntoConstraints = NO;
         [self initAirPump];
     }
     return self;
+}
+
+#pragma mark - Public methods
+
+- (void)setUpAirPumpWithID:(NSString *)identification andImage:(UIImage *)airPumpImage {
+    self.identification = identification;
+    [self.bottomView setImage:airPumpImage];
 }
 
 #pragma mark - Private methods
@@ -54,15 +82,15 @@
 - (void)onAirPumpTouchUpInside:(id)sender {
     [UIView animateWithDuration:0.5f
                      animations:^{
-                         self.topView.frame = CGRectMake(5.0f, 30.0f, 30.0f, 20.0f);
+                         self.topView.frame = CGRectMake(60.0f, 65.0f, 30.0f, 20.0f);
                      }
                      completion:^(BOOL finished) {
                          [UIView animateWithDuration:0.5f
                                           animations:^{
-                                              self.topView.frame = CGRectMake(5.0f, 17.0f, 30.0f, 20.0f);
+                                              self.topView.frame = CGRectMake(60.0f, 55.0f, 30.0f, 20.0f);
                                           }
                           ];
-                             [self.delegate didTapOnAirPump:self];
+                         [self.delegate didTapOnAirPump:self];
                      }
      ];
 }

@@ -18,35 +18,17 @@
     if (self) {
         self.backgroundColor = nil;
         self.opaque = NO;
-        self.translatesAutoresizingMaskIntoConstraints = NO;
     }
     return self;
 }
 
-- (void)drawAirTubeAtPosition:(NSString *)position {
+#pragma mark - Public methods
+
+- (void)drawAirTube {
+    UIGraphicsBeginImageContext(CGSizeMake(125.0f, 115.0));
     
-    // Check which path to draw
-    
-    UIBezierPath *tubePath;
-    CGSize imageContext;
-    
-    if ([position isEqualToString:@"Left"]) {
-        tubePath = [UIBezierPath airTubeGlyphLeft];
-        imageContext = CGSizeMake(210.0f, 160.0f);
-    }
-    else if ([position isEqualToString:@"Center"]) {
-        tubePath = [UIBezierPath airTubeGlyphCenter];
-        imageContext = CGSizeMake(125.0f, 165.0f);
-    }
-    else if ([position isEqualToString:@"Right"]) {
-        tubePath = [UIBezierPath airTubeGlyphRight];
-        imageContext = CGSizeMake(220.0f, 160.0f);
-    }
-    
-    // Draw path
-    
-    UIGraphicsBeginImageContext(imageContext);
-    
+    UIBezierPath *tubePath = [UIBezierPath airTubeGlyphCenter];
+    [tubePath applyTransform:CGAffineTransformMakeScale(1.0f, 0.7f)];
     tubePath.lineWidth = 3.0f;
     [[UIColor blackColor] setStroke];
     [tubePath stroke];
@@ -58,45 +40,25 @@
     [self addSubview:tubeImageView];
 }
 
-- (void)animateIdeaAlongAirTubeAtPosition:(NSString *)position completion:(void (^)(BOOL finished))completionBlock {
+- (void)animateIdeaAlongPathWithCompletion:(void (^)(BOOL))completionBlock {
     
 	// Prepare the animation
     
 	CAKeyframeAnimation *pathAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
 	pathAnimation.calculationMode = kCAAnimationPaced;
 	pathAnimation.fillMode = kCAFillModeForwards;
-	pathAnimation.duration = 5.0;
+	pathAnimation.duration = 3.0;
     
-    // Check from which airPump tap comes from to set up the path for the animation
+    UIBezierPath *tubePath = [UIBezierPath airTubeGlyphCenter];
+    [tubePath applyTransform:CGAffineTransformMakeScale(1.0f, 0.7f)];
+    [tubePath applyTransform:CGAffineTransformMakeTranslation(0, -25.0f)];
+    pathAnimation.path = tubePath.CGPath;
+    CGRect circleRect = CGRectMake(57.0f, 79.5f, 6.0f, 6.0f);
+    CGRect circleViewFrame = CGRectMake(0, 0, 125.0f, 115.0);
     
-    UIBezierPath *tubePath;
-    CGSize imageContext;
-    CGRect circleRect;
-    CGRect circleViewFrame;
-    
-    if ([position isEqualToString:@"Left"]) {
-        tubePath = [UIBezierPath airTubeGlyphLeft];
-        imageContext = CGSizeMake(210.0f, 160.0f);
-        circleRect = CGRectMake(103.0f, 77.0f, 6.0f, 6.0f);
-        circleViewFrame = CGRectMake(0, 0, 210.0f, 160.0f);
-    }
-    else if ([position isEqualToString:@"Center"]) {
-        tubePath = [UIBezierPath airTubeGlyphCenter];
-        imageContext = CGSizeMake(120.0f, 165.0f);
-        circleRect = CGRectMake(57.0f, 79.5f, 6.0f, 6.0f);
-        circleViewFrame = CGRectMake(0, 0, 120.0f, 165.0);
-    }
-    else if ([position isEqualToString:@"Right"]) {
-        tubePath = [UIBezierPath airTubeGlyphRight];
-        imageContext = CGSizeMake(220.0f, 160.0f);
-        circleRect = CGRectMake(107.0f, 77.5f, 6.0f, 6.0f);
-        circleViewFrame = CGRectMake(0, 0, 220.0f, 160.0f);
-    }
-	pathAnimation.path = tubePath.CGPath;
-	
 	// Set up moving circle
     
-	UIGraphicsBeginImageContext(imageContext);
+	UIGraphicsBeginImageContext(CGSizeMake(125.0f, 115.0));
 	CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextAddEllipseInRect(context, circleRect);
 	CGContextSetFillColorWithColor(context, [UIColor blackColor].CGColor);

@@ -7,18 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AirTubeView.h"
 
 @protocol AirPumpViewDelegate;
 
+
 @interface AirPumpView : UIView
 
-@property (nonatomic, strong) UIImageView *bottomView;
-@property (nonatomic, strong) UIImageView *topView;
+@property (nonatomic, strong) NSString *identification;
+@property (nonatomic, strong) AirTubeView *airTubeView;
 @property (nonatomic, weak) id <AirPumpViewDelegate> delegate;
 
-- (void)initAirPump;
+- (void)setUpAirPumpWithID:(NSString *)identification andImage:(UIImage *)airPumpImage;
 
 @end
+
 
 @protocol AirPumpViewDelegate <NSObject>
 

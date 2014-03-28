@@ -8,14 +8,9 @@
 
 #import "BalloonView.h"
 
-#import <QuartzCore/QuartzCore.h>
-
-#import "UIBezierPath+BalloonGlyph.h"
-#import "UIColor+ColorTools.h"
-
-
 @interface BalloonView ()
 
+@property (nonatomic, strong) UIImageView *balloonImageView;
 - (void)initBallon;
 
 @end
@@ -24,25 +19,12 @@
 @implementation BalloonView
 
 - (void)initBallon {
-//    UIGraphicsBeginImageContext(CGSizeMake(100.0f, 100.0f));
-//    
-//    UIBezierPath *balloonPath = [UIBezierPath balloonGlyph];
-//    [balloonPath applyTransform:CGAffineTransformMakeScale(1.7f, 1.7f)];
-//    [balloonPath applyTransform:CGAffineTransformMakeTranslation(15.0f, 0)];
-//    [[UIColor blackColor] setStroke];
-//    [balloonPath stroke];
-//    [[UIColor whiteColor] setFill];
-//    [balloonPath fill];
-//    
-//    UIImage *balloonImage = UIGraphicsGetImageFromCurrentImageContext();
-//    UIGraphicsEndImageContext();
+    self.balloonImageView = [[UIImageView alloc] init];
+    self.balloonImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:self.balloonImageView];
     
-    UIImageView *balloonImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Balloon.png"]];
-    balloonImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:balloonImageView];
-    
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[balloonImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(balloonImageView)]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[balloonImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(balloonImageView)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_balloonImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_balloonImageView)]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_balloonImageView]|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(_balloonImageView)]];
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -53,6 +35,10 @@
         self.opaque = NO;
     }
     return self;
+}
+
+- (void)setUpBalloonWithImage:(UIImage *)balloonImage {
+    [self.balloonImageView setImage:balloonImage];
 }
 
 @end
